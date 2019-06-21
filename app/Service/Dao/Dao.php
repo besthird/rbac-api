@@ -10,8 +10,16 @@ declare(strict_types=1);
  * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
  */
 
-use Hyperf\HttpServer\Router\Router;
+namespace App\Service\Dao;
 
-Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+use Hyperf\Contract\StdoutLoggerInterface;
 
-Router::get('/project', 'App\Controller\Admin\ProjectController@index');
+abstract class Dao
+{
+    protected $logger;
+
+    public function __construct(StdoutLoggerInterface $logger)
+    {
+        $this->logger = $logger;
+    }
+}

@@ -22,25 +22,8 @@ class ProjectTest extends HttpTestCase
 {
     public function testAdminProjectIndex()
     {
-        $this->assertTrue(true);
-
-        $res = $this->get('/');
+        $res = $this->get('/project', []);
 
         $this->assertSame(0, $res['code']);
-        $this->assertSame('Hello Hyperf.', $res['data']['message']);
-        $this->assertSame('GET', $res['data']['method']);
-        $this->assertSame('Hyperf', $res['data']['user']);
-
-        $res = $this->get('/', ['user' => 'limx']);
-
-        $this->assertSame(0, $res['code']);
-        $this->assertSame('limx', $res['data']['user']);
-
-        $res = $this->post('/', [
-            'user' => 'limx',
-        ]);
-        $this->assertSame('Hello Hyperf.', $res['data']['message']);
-        $this->assertSame('POST', $res['data']['method']);
-        $this->assertSame('limx', $res['data']['user']);
     }
 }

@@ -10,8 +10,11 @@ declare(strict_types=1);
  * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
  */
 
-use Hyperf\HttpServer\Router\Router;
+namespace App\Service\Formatter;
 
-Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+use Hyperf\Utils\Traits\StaticInstance;
 
-Router::get('/project', 'App\Controller\Admin\ProjectController@index');
+abstract class Formatter
+{
+    use StaticInstance;
+}
