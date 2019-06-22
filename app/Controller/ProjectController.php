@@ -53,11 +53,12 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function save(int $id = 0)
+    public function save()
     {
         $input = $this->request->all();
 
         $validator = Validate::make([
+            'id' => 'require',
             'key' => 'require',
             'name' => 'require',
             'comment' => 'require',
@@ -67,7 +68,7 @@ class ProjectController extends Controller
             throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
         }
 
-        $result = $this->dao->save($input, $id);
+        $result = $this->dao->save($input, $input['id']);
 
         return $this->response->success($result);
     }

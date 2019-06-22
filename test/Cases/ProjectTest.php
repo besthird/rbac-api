@@ -29,7 +29,8 @@ class ProjectTest extends HttpTestCase
 
     public function testProjectSave()
     {
-        $res = $this->post('/project/1', [
+        $res = $this->json('/project/save', [
+            'id' => 1,
             'key' => 'test',
             'name' => '单测专用项目',
             'comment' => '单测专用项目, 勿动',
@@ -40,8 +41,8 @@ class ProjectTest extends HttpTestCase
 
     public function testProjectDelete()
     {
-        $res = $this->post('/project/delete', [
-            'project_id' => 2,
+        $res = $this->json('/project/delete', [
+            'id' => 2,
         ]);
 
         $this->assertSame(0, $res['code']);
