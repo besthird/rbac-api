@@ -24,7 +24,7 @@ class ProjectDao extends Dao
      * @param mixed $throw
      * @return Project
      */
-    public function first($id, $throw = false)
+    public function first($id, $throw = true)
     {
         $model = Project::query()->find($id);
         if ($throw && empty($model)) {
@@ -54,10 +54,21 @@ class ProjectDao extends Dao
     {
         $model = new Project();
         if ($id > 0) {
-            $model = $this->first($id, true);
+            $model = $this->first($id);
         }
 
         $model->fill($input);
         return $model->save();
+    }
+
+    public function delete($id)
+    {
+        $model = $this->first($id, false);
+
+        if ($model) {
+            $model->delete();
+        }
+
+        return true;
     }
 }

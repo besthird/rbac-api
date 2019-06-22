@@ -71,4 +71,13 @@ class ProjectController extends Controller
 
         return $this->response->success($result);
     }
+
+    public function delete()
+    {
+        $id = $this->request->input('project_id', 0);
+
+        $result = $this->dao->delete($id);
+
+        return $this->response->success($result);
+    }
 }
