@@ -12,11 +12,28 @@ declare(strict_types=1);
 
 namespace App\Service\Dao;
 
+use App\Constants\ErrorCode;
+use App\Exception\BusinessException;
 use App\Kernel\Helper\ModelHelper;
 use App\Model\Project;
 
 class ProjectDao extends Dao
 {
+    /**
+     * @param mixed $id
+     * @param mixed $throw
+     * @return Project
+     */
+    public function first($id, $throw = false)
+    {
+        $model = Project::query()->find($id);
+        if ($throw && empty($model)) {
+            throw new BusinessException(ErrorCode::PROJECT_NOT_EXIST);
+        }
+
+        return $model;
+    }
+
     public function find($input = [], $offset = 0, $limit = 10)
     {
         $query = Project::query();
@@ -31,5 +48,16 @@ class ProjectDao extends Dao
         }
 
         return ModelHelper::pagination($query, $offset, $limit);
+    }
+
+    public function save($input, $id)
+    {
+        $model = new Project();
+        if ($id > 0) {
+            $model = $this->first($id, true);
+        }
+
+        $model->fill($input);
+        return $model->save();
     }
 }

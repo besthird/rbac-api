@@ -29,4 +29,9 @@ class ErrorCode extends AbstractConstants
      * @Message("参数非法")
      */
     const PARAMS_INVALID = 1000;
+
+    /**
+     * @Message("项目不存在")
+     */
+    const PROJECT_NOT_EXIST = 1001;
 }

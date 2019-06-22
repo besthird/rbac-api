@@ -14,4 +14,5 @@ use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
 
-Router::get('/project', 'App\Controller\Admin\ProjectController@index');
+Router::get('/project', 'App\Controller\ProjectController@index');
+Router::post('/project/{id:\d+}', 'App\Controller\ProjectController@save');

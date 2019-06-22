@@ -20,9 +20,20 @@ use HyperfTest\HttpTestCase;
  */
 class ProjectTest extends HttpTestCase
 {
-    public function testAdminProjectIndex()
+    public function testProjectIndex()
     {
         $res = $this->get('/project', []);
+
+        $this->assertSame(0, $res['code']);
+    }
+
+    public function testProjectSave()
+    {
+        $res = $this->post('/project/1', [
+            'key' => 'test',
+            'name' => '单测专用项目',
+            'comment' => '单测专用项目, 勿动',
+        ]);
 
         $this->assertSame(0, $res['code']);
     }
