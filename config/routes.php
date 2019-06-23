@@ -17,7 +17,7 @@ Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@i
 Router::get('/project', 'App\Controller\ProjectController@index');
 Router::post('/project/save', 'App\Controller\ProjectController@save');
 Router::get('/project/info', 'App\Controller\ProjectController@info');
-Router::get('/project/delete', 'App\Controller\ProjectController@delete');
+Router::post('/project/delete', 'App\Controller\ProjectController@delete');
 
 Router::post('/group/save', 'App\Controller\GroupController@save');
 Router::get('/group', 'App\Controller\GroupController@index');

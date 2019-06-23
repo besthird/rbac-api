@@ -42,7 +42,7 @@ class ProjectTest extends HttpTestCase
     public function testProjectDelete()
     {
         $res = $this->json('/project/delete', [
-            'id' => 2,
+            'project_id' => 2,
         ]);
 
         $this->assertSame(0, $res['code']);

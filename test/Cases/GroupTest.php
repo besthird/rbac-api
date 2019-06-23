@@ -22,8 +22,8 @@ class GroupTest extends HttpTestCase
 {
     public function testGroupSave()
     {
-        $res = $this->post('/group/save', [
-            'id' => 0,
+        $res = $this->json('/group/save', [
+            'id' => 1,
             'project_id' => 1,
             'name' => '测试小组，误删',
         ]);
@@ -40,8 +40,8 @@ class GroupTest extends HttpTestCase
 
     public function testGroupDelete()
     {
-        $res = $this->post('/group/delete', [
-            'id' => 1,
+        $res = $this->json('/group/delete', [
+            'id' => 2,
         ]);
 
         $this->assertSame(0, $res['code']);

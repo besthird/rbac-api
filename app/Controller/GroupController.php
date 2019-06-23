@@ -76,8 +76,9 @@ class GroupController extends Controller
 
     public function delete()
     {
-        $id = $this->request->input('id', 0);
+        $id = $this->request->input('id');
 
+        var_dump($this->request->all());
         if (empty($id)) {
             throw new BusinessException(ErrorCode::PARAMS_INVALID);
         }
