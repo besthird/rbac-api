@@ -37,7 +37,7 @@ class ProjectController extends Controller
             'id' => 'integer|>:0',
         ]);
 
-        if (! $validator->check($input)) {
+        if (!$validator->check($input)) {
             throw new BusinessException(ErrorCode::PARAMS_INVALID);
         }
 
@@ -64,11 +64,32 @@ class ProjectController extends Controller
             'comment' => 'require',
         ]);
 
-        if (! $validator->check($input)) {
-            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
+        if (!$validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string)$validator->getError());
         }
 
         $result = $this->dao->save($input, $input['id']);
+
+        return $this->response->success($result);
+    }
+
+    /**
+     * 获取项目名称
+     * @return \App\Kernel\Http\Response|mixed
+     */
+    public function info()
+    {
+        $input = $this->request->all();
+
+        $validator = Validate::make([
+            'id' => 'require',
+        ]);
+
+        if (!$validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string)$validator->getError());
+        }
+
+        $result = $this->dao->info($input['id']);
 
         return $this->response->success($result);
     }

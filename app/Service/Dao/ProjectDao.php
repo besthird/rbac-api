@@ -61,6 +61,19 @@ class ProjectDao extends Dao
         return $model->save();
     }
 
+    /**
+     * 获取项目
+     * @param $id
+     * @return Project|array
+     */
+    public function info($id)
+    {
+        if (!$id) {
+            return [];
+        }
+        return $this->first($id);
+    }
+
     public function delete($id)
     {
         $model = $this->first($id, false);
