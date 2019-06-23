@@ -22,3 +22,8 @@ Router::post('/project/delete', 'App\Controller\ProjectController@delete');
 Router::post('/group/save', 'App\Controller\GroupController@save');
 Router::get('/group', 'App\Controller\GroupController@index');
 Router::post('/group/delete', 'App\Controller\GroupController@delete');
+
+Router::get('/role', 'App\Controller\RoleController@index');
+Router::post('/role/save', 'App\Controller\RoleController@save');
+Router::get('/role/info', 'App\Controller\RoleController@info');
+Router::post('/role/delete', 'App\Controller\RoleController@delete');

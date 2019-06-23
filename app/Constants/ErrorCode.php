@@ -39,4 +39,9 @@ class ErrorCode extends AbstractConstants
      * @Message("小组不存在")
      */
     const GROUP_NOT_EXIST = 1101;
+
+    /**
+     * @Message("角色不存在")
+     */
+    const ROLE_NOT_EXIST = 1102;
 }
