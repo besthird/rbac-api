@@ -36,7 +36,7 @@ class RoleDao extends Dao
         $query = Role::query();
 
         if (! empty($input['name'])) {
-            $query->where('name', 'like', "%{$input['key']}%");
+            $query->where('name', 'like', "%{$input['name']}%");
         }
 
         if (! empty($input['status'])){
