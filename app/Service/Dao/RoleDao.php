@@ -42,7 +42,7 @@ class RoleDao extends Dao
             $query->where('name', 'like', "%{$input['name']}%");
         }
 
-        if (! empty($input['status'])) {
+        if (isset($input['status'])) {
             $query->where('status', $input['status']);
         }
 
