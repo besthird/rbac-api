@@ -34,4 +34,9 @@ class ErrorCode extends AbstractConstants
      * @Message("项目不存在")
      */
     const PROJECT_NOT_EXIST = 1001;
+
+    /**
+     * @Message("小组不存在")
+     */
+    const GROUP_NOT_EXIST = 1101;
 }

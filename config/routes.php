@@ -1,7 +1,6 @@
 <?php
 
 declare(strict_types=1);
-
 /**
  * This file is part of Hyperf.
  *
@@ -20,3 +19,5 @@ Router::get('/project', 'App\Controller\ProjectController@index');
 Router::addRoute(['OPTIONS', 'POST'], '/project/save', 'App\Controller\ProjectController@save');
 Router::addRoute(['OPTIONS', 'GET'], '/project/info', 'App\Controller\ProjectController@info');
 Router::addRoute(['OPTIONS', 'GET'], '/project/delete', 'App\Controller\ProjectController@delete');
+
+Router::post('/group/save', 'App\Controller\GroupController@save');

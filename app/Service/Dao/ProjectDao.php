@@ -62,13 +62,13 @@ class ProjectDao extends Dao
     }
 
     /**
-     * 获取项目
+     * 获取项目.
      * @param $id
-     * @return Project|array
+     * @return array|Project
      */
     public function info($id)
     {
-        if (!$id) {
+        if (! $id) {
             return [];
         }
         return $this->first($id);
