@@ -1,9 +1,13 @@
 <?php
+
+declare(strict_types=1);
 /**
- * Created by PhpStorm.
- * User: gb
- * Date: 2019-06-23
- * Time: 20:41
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://doc.hyperf.io
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
  */
 
 namespace App\Service\Formatter;
@@ -11,8 +15,7 @@ namespace App\Service\Formatter;
 use App\Model\Role;
 
 /**
- * Class RoleFormatter
- * @package App\Service\Formatter
+ * Class RoleFormatter.
  */
 class RoleFormatter extends Formatter
 {

@@ -1,13 +1,16 @@
 <?php
+
+declare(strict_types=1);
 /**
- * Created by PhpStorm.
- * User: gb
- * Date: 2019-06-23
- * Time: 20:33
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://doc.hyperf.io
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
  */
 
 namespace App\Service\Dao;
-
 
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
@@ -39,7 +42,7 @@ class RoleDao extends Dao
             $query->where('name', 'like', "%{$input['name']}%");
         }
 
-        if (! empty($input['status'])){
+        if (! empty($input['status'])) {
             $query->where('status', $input['status']);
         }
 
@@ -76,5 +79,12 @@ class RoleDao extends Dao
         }
 
         return true;
+    }
+
+    public function status($id)
+    {
+        $model = $this->first($id);
+        $model->status = $model->status == 0 ? 1 : 0;
+        return $model->save();
     }
 }

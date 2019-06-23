@@ -33,7 +33,7 @@ class RoleTest extends HttpTestCase
             'id' => 0,
             'name' => '角色1',
             'comment' => '角色1测试',
-            'status' => 1
+            'status' => 1,
         ]);
 
         $this->assertSame(0, $res['code']);

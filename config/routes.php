@@ -27,3 +27,4 @@ Router::get('/role', 'App\Controller\RoleController@index');
 Router::post('/role/save', 'App\Controller\RoleController@save');
 Router::get('/role/info', 'App\Controller\RoleController@info');
 Router::post('/role/delete', 'App\Controller\RoleController@delete');
+Router::post('/role/status', 'App\Controller\RoleController@status');

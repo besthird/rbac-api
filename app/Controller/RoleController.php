@@ -1,6 +1,14 @@
 <?php
 
 declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @link     https://www.hyperf.io
+ * @document https://doc.hyperf.io
+ * @contact  group@hyperf.io
+ * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
+ */
 
 namespace App\Controller;
 
@@ -9,8 +17,6 @@ use App\Exception\BusinessException;
 use App\Service\Dao\RoleDao;
 use App\Service\Formatter\RoleFormatter;
 use Hyperf\Di\Annotation\Inject;
-use Hyperf\HttpServer\Contract\RequestInterface;
-use Hyperf\HttpServer\Contract\ResponseInterface;
 use think\Validate;
 
 class RoleController extends Controller
@@ -56,7 +62,7 @@ class RoleController extends Controller
             'id' => 'require',
             'name' => 'require',
             'comment' => 'require',
-            'status' => 'require'
+            'status' => 'require',
         ]);
 
         if (! $validator->check($input)) {
@@ -90,6 +96,23 @@ class RoleController extends Controller
         $id = $this->request->input('id', 0);
 
         $result = $this->dao->delete($id);
+
+        return $this->response->success($result);
+    }
+
+    public function status()
+    {
+        $input = $this->request->all();
+
+        $validator = Validate::make([
+            'id' => 'require',
+        ]);
+
+        if (! $validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
+        }
+
+        $result = $this->dao->status($input['id']);
 
         return $this->response->success($result);
     }
