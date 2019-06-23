@@ -19,5 +19,4 @@ Router::get('/project', 'App\Controller\ProjectController@index');
 //Router::post('/project/save', 'App\Controller\ProjectController@save');
 Router::addRoute(['OPTIONS', 'POST'], '/project/save', 'App\Controller\ProjectController@save');
 Router::addRoute(['OPTIONS', 'GET'], '/project/info', 'App\Controller\ProjectController@info');
-
-Router::post('/project/delete', 'App\Controller\ProjectController@delete');
+Router::addRoute(['OPTIONS', 'GET'], '/project/delete', 'App\Controller\ProjectController@delete');
