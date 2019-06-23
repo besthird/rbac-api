@@ -12,28 +12,26 @@ declare(strict_types=1);
 
 namespace App\Service\Formatter;
 
+use App\Model\Group;
 use App\Model\Project;
 
-class ProjectFormatter extends Formatter
+class GroupFormatter extends Formatter
 {
-    public function base(Project $model)
+    public function base(Group $model)
     {
         return [
             'id' => $model->id,
-            'key' => $model->key,
+            'project_id' => $model->project_id,
             'name' => $model->name,
-            'comment' => $model->comment,
             'created_at' => (string) $model->created_at,
-            'updated_at' => (string) $model->updated_at,
+            'updated_at' => (string) $model->created_at,
         ];
     }
 
-    public function small(Project $model)
+    public function detail(Group $model, ?Project $project = null)
     {
-        return [
-            'id' => $model->id,
-            'key' => $model->key,
-            'name' => $model->name,
-        ];
+        $result = $this->base($model);
+        $result['project'] = ProjectFormatter::instance()->small($project);
+        return $result;
     }
 }

@@ -20,3 +20,4 @@ Router::get('/project/info', 'App\Controller\ProjectController@info');
 Router::get('/project/delete', 'App\Controller\ProjectController@delete');
 
 Router::post('/group/save', 'App\Controller\GroupController@save');
+Router::get('/group', 'App\Controller\GroupController@index');

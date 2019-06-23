@@ -15,6 +15,7 @@ namespace App\Controller;
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Service\Dao\GroupDao;
+use App\Service\Formatter\GroupFormatter;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
 
@@ -25,6 +26,34 @@ class GroupController extends Controller
      * @var GroupDao
      */
     protected $dao;
+
+    public function index()
+    {
+        $input = $this->request->all();
+        $offset = $this->request->input('offset', 0);
+        $limit = $this->request->input('limit', 10);
+
+        $validator = Validate::make([
+            'id' => 'integer|>=:0',
+            'project_id' => 'integer|>=:0',
+        ]);
+
+        if (! $validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
+        }
+
+        [$count,$items] = $this->dao->find($input, ['project'], $offset, $limit);
+
+        $result = [];
+        foreach ($items as $item) {
+            $result[] = GroupFormatter::instance()->detail($item, $item->project);
+        }
+
+        return $this->response->success([
+            'count' => $count,
+            'items' => $result,
+        ]);
+    }
 
     public function save()
     {
