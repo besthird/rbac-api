@@ -41,9 +41,7 @@ class Response
         return $this->response->json([
             'code' => 0,
             'data' => $data,
-        ])->withHeader('Access-Control-Allow-Origin', '*')
-            ->withHeader('Access-Control-Allow-Credentials', 'true')
-            ->withHeader('Access-Control-Allow-Headers', '*');
+        ]);
     }
 
     public function fail($code, $message = '')
@@ -51,9 +49,7 @@ class Response
         return $this->response->json([
             'code' => $code,
             'message' => $message,
-        ])->withHeader('Access-Control-Allow-Origin', '*')
-            ->withHeader('Access-Control-Allow-Credentials', 'true')
-            ->withHeader('Access-Control-Allow-Headers', '*');
+        ]);
     }
 
     public function redirect($url, $status = 302)

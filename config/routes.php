@@ -15,10 +15,9 @@ use Hyperf\HttpServer\Router\Router;
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
 
 Router::get('/project', 'App\Controller\ProjectController@index');
-//Router::post('/project/save', 'App\Controller\ProjectController@save');
-Router::addRoute(['OPTIONS', 'POST'], '/project/save', 'App\Controller\ProjectController@save');
-Router::addRoute(['OPTIONS', 'GET'], '/project/info', 'App\Controller\ProjectController@info');
-Router::addRoute(['OPTIONS', 'GET'], '/project/delete', 'App\Controller\ProjectController@delete');
+Router::post('/project/save', 'App\Controller\ProjectController@save');
+Router::get('/project/info', 'App\Controller\ProjectController@info');
+Router::get('/project/delete', 'App\Controller\ProjectController@delete');
 
 Router::post('/group/save', 'App\Controller\GroupController@save');
 Router::get('/group', 'App\Controller\GroupController@index');
