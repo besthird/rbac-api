@@ -73,4 +73,17 @@ class GroupController extends Controller
 
         return $this->response->success($result);
     }
+
+    public function delete()
+    {
+        $id = $this->request->input('id', 0);
+
+        if (empty($id)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID);
+        }
+
+        $result = $this->dao->delete($id);
+
+        return $this->response->success($result);
+    }
 }

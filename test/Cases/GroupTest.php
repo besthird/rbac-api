@@ -35,6 +35,15 @@ class GroupTest extends HttpTestCase
     {
         $res = $this->get('/group', []);
 
-        var_dump($res);
+        $this->assertSame(0, $res['code']);
+    }
+
+    public function testGroupDelete()
+    {
+        $res = $this->post('/group/delete', [
+            'id' => 1,
+        ]);
+
+        $this->assertSame(0, $res['code']);
     }
 }

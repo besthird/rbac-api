@@ -22,3 +22,4 @@ Router::addRoute(['OPTIONS', 'GET'], '/project/delete', 'App\Controller\ProjectC
 
 Router::post('/group/save', 'App\Controller\GroupController@save');
 Router::get('/group', 'App\Controller\GroupController@index');
+Router::post('/group/delete', 'App\Controller\GroupController@delete');

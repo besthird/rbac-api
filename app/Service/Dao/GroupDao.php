@@ -34,6 +34,11 @@ class GroupDao extends Dao
         return $model;
     }
 
+    public function delete($id)
+    {
+        return Group::query()->where('id', $id)->delete();
+    }
+
     public function find($input, $with = [], $offset, $limit)
     {
         $query = Group::query();
