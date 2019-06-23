@@ -48,4 +48,9 @@ class Group extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'project_id' => 'integer'];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
 }

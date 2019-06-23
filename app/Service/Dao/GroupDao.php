@@ -14,13 +14,14 @@ namespace App\Service\Dao;
 
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
+use App\Kernel\Helper\ModelHelper;
 use App\Model\Group;
 
 class GroupDao extends Dao
 {
     /**
-     * @param mixed $id
-     * @param mixed $throw
+     * @param int $id
+     * @param bool $throw
      * @return Group
      */
     public function first($id, $throw = true)
@@ -31,6 +32,22 @@ class GroupDao extends Dao
         }
 
         return $model;
+    }
+
+    public function find($input, $with = [], $offset, $limit)
+    {
+        $query = Group::query();
+        if ($with) {
+            $query->with(...$with);
+        }
+        if (isset($input['id'])) {
+            $query->where('id', $input['id']);
+        }
+        if (isset($input['project_id'])) {
+            $query->where('project_id', $input['project_id']);
+        }
+
+        return ModelHelper::pagination($query, $offset, $limit);
     }
 
     public function save($input, $id = 0)

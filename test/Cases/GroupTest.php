@@ -30,4 +30,11 @@ class GroupTest extends HttpTestCase
 
         $this->assertSame(0, $res['code']);
     }
+
+    public function testGroupIndex()
+    {
+        $res = $this->get('/group', []);
+
+        var_dump($res);
+    }
 }
