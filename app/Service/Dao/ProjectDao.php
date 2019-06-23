@@ -44,7 +44,7 @@ class ProjectDao extends Dao
             $query->where('key', $input['key']);
         }
         if (! empty($input['name'])) {
-            $query->where('name', 'like', "%{$input['key']}%");
+            $query->where('name', 'like', "%{$input['name']}%");
         }
 
         return ModelHelper::pagination($query, $offset, $limit);
