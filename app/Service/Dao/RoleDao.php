@@ -59,7 +59,8 @@ class RoleDao extends Dao
         $model->name = $input['name'];
         $model->comment = $input['comment'];
         $model->status = $input['status'];
-        return $model->save();
+        $model->save();
+        return $model;
     }
 
     public function info($id)

@@ -82,7 +82,7 @@ class RoleController extends Controller
         // 先删除
         $this->roleRouterDao->delRoleIdAll($model->id);
 
-        $router_list = $input['role_list'] ?? [];
+        $router_list = $input['router_list'] ?? [];
 
         // 保存
         if ($router_list && is_array($router_list)) {

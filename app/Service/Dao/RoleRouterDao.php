@@ -16,7 +16,7 @@ use App\Model\RoleRouter;
 
 class RoleRouterDao extends Dao
 {
-    public function save($router_id, $role_id)
+    public function save($role_id, $router_id)
     {
         $model = new RoleRouter();
         $model->router_id = $router_id;
