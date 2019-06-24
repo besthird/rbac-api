@@ -66,7 +66,7 @@ class RoleController extends Controller
         $input = $this->request->all();
 
         $validator = Validate::make([
-            'id' => 'require',
+            'id' => 'require>=:0',
             'name' => 'require',
             'comment' => 'require',
             'status' => 'require',
