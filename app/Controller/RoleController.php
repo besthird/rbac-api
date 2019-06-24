@@ -17,6 +17,7 @@ use App\Exception\BusinessException;
 use App\Service\Dao\RoleDao;
 use App\Service\Dao\RoleRouterDao;
 use App\Service\Formatter\RoleFormatter;
+use App\Service\Formatter\RouterFormatter;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
 
@@ -132,6 +133,32 @@ class RoleController extends Controller
         }
 
         $result = $this->dao->status($input['id']);
+
+        return $this->response->success($result);
+    }
+
+    public function roleRouterAll()
+    {
+        $input = $this->request->all();
+
+        $validator = Validate::make([
+            'id' => 'require',
+        ]);
+
+        if (! $validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
+        }
+
+        $model = $this->dao->first($input['id']);
+
+        $routers = $model->router()->get();
+        $result = [];
+
+        if ($routers) {
+            foreach ($routers as $item) {
+                $result[] = RouterFormatter::instance()->small($item);
+            }
+        }
 
         return $this->response->success($result);
     }

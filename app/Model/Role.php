@@ -49,4 +49,9 @@ class Role extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'status' => 'integer'];
+
+    public function router()
+    {
+        return $this->belongsToMany(Router::class, 'role_router', 'role_id', 'router_id');
+    }
 }
