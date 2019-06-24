@@ -16,6 +16,7 @@ use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Service\Dao\GroupDao;
 use App\Service\Formatter\GroupFormatter;
+use App\Service\RouterService;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
 
@@ -71,6 +72,8 @@ class GroupController extends Controller
 
         $result = $this->dao->save($input, $input['id']);
 
+        di()->get(RouterService::class)->resetRouters();
+
         return $this->response->success($result);
     }
 
@@ -83,6 +86,8 @@ class GroupController extends Controller
         }
 
         $result = $this->dao->delete($id);
+
+        di()->get(RouterService::class)->resetRouters();
 
         return $this->response->success($result);
     }

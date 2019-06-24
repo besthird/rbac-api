@@ -29,7 +29,7 @@ class RoleTest extends HttpTestCase
 
     public function testRoleSave()
     {
-        $res = $this->get('/role/save', [
+        $res = $this->json('/role/save', [
             'id' => 0,
             'name' => '角色1',
             'comment' => '角色1测试',

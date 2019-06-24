@@ -36,7 +36,7 @@ class ProjectDao extends Dao
 
     public function all()
     {
-        return Project::query()->get();
+        return Project::query()->with('group', 'group.routers')->get();
     }
 
     public function find($input = [], $offset = 0, $limit = 10)

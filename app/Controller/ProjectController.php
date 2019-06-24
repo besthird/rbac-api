@@ -16,6 +16,7 @@ use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Service\Dao\ProjectDao;
 use App\Service\Formatter\ProjectFormatter;
+use App\Service\RouterService;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
 
@@ -70,6 +71,8 @@ class ProjectController extends Controller
 
         $result = $this->dao->save($input, $input['id']);
 
+        di()->get(RouterService::class)->resetRouters();
+
         return $this->response->success($result);
     }
 
@@ -100,19 +103,14 @@ class ProjectController extends Controller
 
         $result = $this->dao->delete($id);
 
+        di()->get(RouterService::class)->resetRouters();
+
         return $this->response->success($result);
     }
 
     public function projectRouterList()
     {
-        $result = [];
-        $models = $this->dao->all();
-
-        if ($models) {
-            foreach ($models as $model) {
-                $result[] = ProjectFormatter::instance()->route($model);
-            }
-        }
+        $result = di()->get(RouterService::class)->getRouters();
 
         return $this->response->success($result);
     }

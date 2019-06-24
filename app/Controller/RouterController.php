@@ -17,6 +17,7 @@ use App\Exception\BusinessException;
 use App\Service\Dao\GroupDao;
 use App\Service\Dao\ProjectDao;
 use App\Service\Dao\RouterDao;
+use App\Service\RouterService;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
 
@@ -68,6 +69,8 @@ class RouterController extends Controller
         $this->groupDao->first($input['group_id']);
 
         $result = $this->dao->save($input, $input['id']);
+
+        di()->get(RouterService::class)->resetRouters();
 
         return $this->response->success($result);
     }

@@ -41,15 +41,11 @@ class ProjectFormatter extends Formatter
     {
         $result = $this->small($model);
         $models = $model->group()->get();
-        if ($models) {
-            foreach ($models as $key => $model) {
-                $result['children'][$key] = GroupFormatter::instance()->small($model);
-                $models = $model->routers()->get();
-                if ($models) {
-                    foreach ($models as $item) {
-                        $result['children'][$key]['children'][] = RouterFormatter::instance()->small($item);
-                    }
-                }
+        foreach ($models as $key => $model) {
+            $result['children'][$key] = GroupFormatter::instance()->small($model);
+            $routers = $model->routers()->get();
+            foreach ($routers as $item) {
+                $result['children'][$key]['children'][] = RouterFormatter::instance()->small($item);
             }
         }
 
