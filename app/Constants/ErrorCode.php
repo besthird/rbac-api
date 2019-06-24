@@ -44,4 +44,9 @@ class ErrorCode extends AbstractConstants
      * @Message("角色不存在")
      */
     const ROLE_NOT_EXIST = 1102;
+
+    /**
+     * @Message("路由不存在")
+     */
+    const ROUTER_NOT_EXIST = 1103;
 }
