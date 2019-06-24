@@ -30,4 +30,8 @@ class RoleFormatter extends Formatter
             'updated_at' => (string) $model->updated_at,
         ];
     }
+
+    public function small()
+    {
+    }
 }

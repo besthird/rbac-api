@@ -15,41 +15,35 @@ namespace App\Service\Dao;
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Kernel\Helper\ModelHelper;
-use App\Model\Project;
+use App\Model\Role;
 
-class ProjectDao extends Dao
+class RoleDao extends Dao
 {
     /**
      * @param mixed $id
      * @param mixed $throw
-     * @return Project
+     * @return Role
      */
     public function first($id, $throw = true)
     {
-        $model = Project::query()->find($id);
+        $model = Role::query()->find($id);
         if ($throw && empty($model)) {
-            throw new BusinessException(ErrorCode::PROJECT_NOT_EXIST);
+            throw new BusinessException(ErrorCode::ROLE_NOT_EXIST);
         }
 
         return $model;
     }
 
-    public function all()
-    {
-        return Project::query()->get();
-    }
-
     public function find($input = [], $offset = 0, $limit = 10)
     {
-        $query = Project::query();
-        if (! empty($input['id'])) {
-            $query->where('id', (int) $input['id']);
-        }
-        if (! empty($input['key'])) {
-            $query->where('key', $input['key']);
-        }
+        $query = Role::query();
+
         if (! empty($input['name'])) {
             $query->where('name', 'like', "%{$input['name']}%");
+        }
+
+        if (isset($input['status'])) {
+            $query->where('status', $input['status']);
         }
 
         return ModelHelper::pagination($query, $offset, $limit);
@@ -57,20 +51,17 @@ class ProjectDao extends Dao
 
     public function save($input, $id)
     {
-        $model = new Project();
+        $model = new Role();
         if ($id > 0) {
             $model = $this->first($id);
         }
 
-        $model->fill($input);
+        $model->name = $input['name'];
+        $model->comment = $input['comment'];
+        $model->status = $input['status'];
         return $model->save();
     }
 
-    /**
-     * 获取项目.
-     * @param $id
-     * @return array|Project
-     */
     public function info($id)
     {
         if (! $id) {
@@ -88,5 +79,12 @@ class ProjectDao extends Dao
         }
 
         return true;
+    }
+
+    public function status($id)
+    {
+        $model = $this->first($id);
+        $model->status = $model->status == 0 ? 1 : 0;
+        return $model->save();
     }
 }
