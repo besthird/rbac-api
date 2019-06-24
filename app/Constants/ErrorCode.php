@@ -51,12 +51,12 @@ class ErrorCode extends AbstractConstants
     const ROUTER_NOT_EXIST = 1103;
 
     /**
+     * @Message("管理员已存在")
+     */
+    const USRE_EXIST = 1200;
+
+    /**
      * @Message("管理员不存在")
      */
     const USRE_NOT_EXIST = 1204;
-
-    /**
-     * @Message("管理员存在")
-     */
-    const USRE_EXIST = 1200;
 }

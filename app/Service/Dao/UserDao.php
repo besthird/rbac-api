@@ -71,8 +71,8 @@ class UserDao extends Dao
         }
 
         if (! empty($input['name'])) {
-            $name = User::query()->where('name', $input['name'])->exists();
-            if ($name) {
+            $exist = $this->exist($input['name'], $id);
+            if ($exist) {
                 throw new BusinessException(ErrorCode::USRE_EXIST);
             }
             $model->name = $input['name'];
@@ -96,5 +96,21 @@ class UserDao extends Dao
         $model->status = $model->status == 0 ? 1 : 0;
 
         return $model->save();
+    }
+
+    /**
+     * 当前登录名是否已经存在.
+     * @param string $name
+     * @param int $id
+     * @return bool
+     */
+    public function exist(string $name, $id = 0): bool
+    {
+        $query = User::query()->where('name', $name);
+        if ($id > 0) {
+            $query->where('id', $id);
+        }
+
+        return $query->exists();
     }
 }
