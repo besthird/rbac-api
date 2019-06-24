@@ -102,4 +102,18 @@ class ProjectController extends Controller
 
         return $this->response->success($result);
     }
+
+    public function projectRouterList()
+    {
+        $result = [];
+        $models = $this->dao->all();
+
+        if ($models) {
+            foreach ($models as $model) {
+                $result[] = ProjectFormatter::instance()->route($model);
+            }
+        }
+
+        return $this->response->success($result);
+    }
 }

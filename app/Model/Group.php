@@ -53,4 +53,9 @@ class Group extends Model
     {
         return $this->belongsTo(Project::class, 'project_id', 'id');
     }
+
+    public function routers()
+    {
+        return $this->hasMany(Router::class, 'group_id', 'id');
+    }
 }
