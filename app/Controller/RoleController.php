@@ -15,6 +15,7 @@ namespace App\Controller;
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Service\Dao\RoleDao;
+use App\Service\Dao\RoleRouterDao;
 use App\Service\Formatter\RoleFormatter;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
@@ -26,6 +27,12 @@ class RoleController extends Controller
      * @var RoleDao
      */
     protected $dao;
+
+    /**
+     * @Inject
+     * @var RoleRouterDao
+     */
+    protected $roleRouterDao;
 
     public function index()
     {
@@ -69,9 +76,21 @@ class RoleController extends Controller
             throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
         }
 
-        $result = $this->dao->save($input, $input['id']);
+        $model = $this->dao->save($input, $input['id']);
 
-        return $this->response->success($result);
+        // 先删除
+        $this->roleRouterDao->delRoleIdAll($model->id);
+
+        $router_list = $input['role_list'] ?? [];
+
+        // 保存
+        if ($router_list && is_array($router_list)) {
+            foreach ($router_list as $router_id) {
+                $this->roleRouterDao->save($model->id, $router_id);
+            }
+        }
+
+        return $this->response->success($model);
     }
 
     public function info()
