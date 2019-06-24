@@ -17,7 +17,6 @@ use App\Exception\BusinessException;
 use App\Service\Dao\RoleDao;
 use App\Service\Dao\RoleRouterDao;
 use App\Service\Formatter\RoleFormatter;
-use App\Service\Formatter\RouterFormatter;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
 
@@ -67,7 +66,7 @@ class RoleController extends Controller
         $input = $this->request->all();
 
         $validator = Validate::make([
-            'id' => 'require',
+            'id' => 'require>=:0',
             'name' => 'require',
             'comment' => 'require',
             'status' => 'require',
