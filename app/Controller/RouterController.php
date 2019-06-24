@@ -14,6 +14,8 @@ namespace App\Controller;
 
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
+use App\Service\Dao\GroupDao;
+use App\Service\Dao\ProjectDao;
 use App\Service\Dao\RouterDao;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
@@ -26,6 +28,18 @@ class RouterController extends Controller
      */
     protected $dao;
 
+    /**
+     * @Inject
+     * @var ProjectDao
+     */
+    protected $projectDao;
+
+    /**
+     * @Inject
+     * @var GroupDao
+     */
+    protected $groupDao;
+
     public function index()
     {
         return $this->response->success();
@@ -36,9 +50,9 @@ class RouterController extends Controller
         $input = $this->request->all();
 
         $validator = Validate::make([
-            'id' => 'require',
-            'project_id' => 'require',
-            'group_id' => 'require',
+            'id' => 'require|integer|>=:0',
+            'project_id' => 'require|integer|>:0',
+            'group_id' => 'require|integer|>:0',
             'type' => 'require',
             'name' => 'require',
             'route' => 'require',
@@ -48,6 +62,10 @@ class RouterController extends Controller
         if (! $validator->check($input)) {
             throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
         }
+
+        $this->projectDao->first($input['project_id']);
+
+        $this->groupDao->first($input['group_id']);
 
         $result = $this->dao->save($input, $input['id']);
 
