@@ -108,7 +108,7 @@ class UserDao extends Dao
     {
         $query = User::query()->where('name', $name);
         if ($id > 0) {
-            $query->where('id', $id);
+            $query->where('id', '<>', $id);
         }
 
         return $query->exists();
