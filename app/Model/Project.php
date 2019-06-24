@@ -49,4 +49,9 @@ class Project extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer'];
+
+    public function group()
+    {
+        return $this->hasMany(Group::class, 'project_id', 'id');
+    }
 }

@@ -34,6 +34,11 @@ class ProjectDao extends Dao
         return $model;
     }
 
+    public function all()
+    {
+        return Project::query()->get();
+    }
+
     public function find($input = [], $offset = 0, $limit = 10)
     {
         $query = Project::query();

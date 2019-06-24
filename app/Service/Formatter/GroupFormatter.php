@@ -28,6 +28,15 @@ class GroupFormatter extends Formatter
         ];
     }
 
+    public function small(Group $model)
+    {
+        return [
+            'id' => $model->id,
+            'project_id' => $model->project_id,
+            'name' => $model->name,
+        ];
+    }
+
     public function detail(Group $model, ?Project $project = null)
     {
         $result = $this->base($model);

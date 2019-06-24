@@ -18,6 +18,7 @@ Router::get('/project', 'App\Controller\ProjectController@index');
 Router::post('/project/save', 'App\Controller\ProjectController@save');
 Router::get('/project/info', 'App\Controller\ProjectController@info');
 Router::post('/project/delete', 'App\Controller\ProjectController@delete');
+Router::get('/project/router/list', 'App\Controller\ProjectController@projectRouterList');
 
 Router::post('/group/save', 'App\Controller\GroupController@save');
 Router::get('/group', 'App\Controller\GroupController@index');
