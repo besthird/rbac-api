@@ -33,7 +33,9 @@ class GroupTest extends HttpTestCase
 
     public function testGroupIndex()
     {
-        $res = $this->get('/group', []);
+        $res = $this->get('/group', [
+            'limit' => 5,
+        ]);
 
         $this->assertSame(0, $res['code']);
     }

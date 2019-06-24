@@ -39,4 +39,14 @@ class ErrorCode extends AbstractConstants
      * @Message("小组不存在")
      */
     const GROUP_NOT_EXIST = 1101;
+
+    /**
+     * @Message("管理员不存在")
+     */
+    const USRE_NOT_EXIST = 1204;
+
+    /**
+     * @Message("管理员存在")
+     */
+    const USRE_EXIST = 1200;
 }

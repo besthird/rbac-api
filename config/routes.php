@@ -22,3 +22,9 @@ Router::post('/project/delete', 'App\Controller\ProjectController@delete');
 Router::post('/group/save', 'App\Controller\GroupController@save');
 Router::get('/group', 'App\Controller\GroupController@index');
 Router::post('/group/delete', 'App\Controller\GroupController@delete');
+
+Router::post('/user/save', 'App\Controller\UserController@save');
+Router::get('/user', 'App\Controller\UserController@index');
+Router::post('/user/delete', 'App\Controller\UserController@delete');
+Router::get('/user/find', 'App\Controller\UserController@find');
+Router::post('/user/status', 'App\Controller\UserController@status');
