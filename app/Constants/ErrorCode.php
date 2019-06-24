@@ -41,6 +41,16 @@ class ErrorCode extends AbstractConstants
     const GROUP_NOT_EXIST = 1101;
 
     /**
+     * @Message("角色不存在")
+     */
+    const ROLE_NOT_EXIST = 1102;
+
+    /**
+     * @Message("路由不存在")
+     */
+    const ROUTER_NOT_EXIST = 1103;
+
+    /**
      * @Message("管理员不存在")
      */
     const USRE_NOT_EXIST = 1204;
