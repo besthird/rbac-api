@@ -82,7 +82,8 @@ class UserDao extends Dao
         }
         if (! empty($input['password'])) {
             $cost = 12;
-            $model->password = password_hash($input['password'], PASSWORD_BCRYPT, ['cost' => $cost]);
+            $option = ['cost' => $cost];
+            $model->password = password_hash($input['password'], PASSWORD_BCRYPT, $option);
         }
         if (! empty($input['status'])) {
             $model->status = $input['status'];
