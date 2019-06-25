@@ -62,7 +62,7 @@ class UserDao extends Dao
      * @param int $id
      * @return bool
      */
-    public function save($input, $id = 0):bool 
+    public function save($input, $id = 0): bool
     {
         $model = new User();
 
@@ -81,7 +81,8 @@ class UserDao extends Dao
             $model->mobile = $input['mobile'];
         }
         if (! empty($input['password'])) {
-            $model->password = $input['password'];
+            $cost = 12;
+            $model->password = password_hash($input['password'], PASSWORD_BCRYPT, ['cost' => $cost]);
         }
         if (! empty($input['status'])) {
             $model->status = $input['status'];
