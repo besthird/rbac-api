@@ -48,8 +48,8 @@ class UserController extends Controller
             'id' => 'integer>=:0',
         ]);
 
-        if (!$validator->check($input)) {
-            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string)$validator->getError());
+        if (! $validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
         }
 
         [$count, $items] = $this->dao->find($input, $offset, $limit);
@@ -90,13 +90,13 @@ class UserController extends Controller
             'id' => 'require|integer|>=:0',
             'name' => 'require',
             'role_id' => 'require',
-            'mobile' => 'require',
+            'mobile' => 'require|mobile',
             'password' => 'require',
             'status' => 'require',
         ]);
 
-        if (!$validator->check($input)) {
-            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string)$validator->getError());
+        if (! $validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
         }
 
         $result = $this->dao->save($input, $input['id']);
@@ -144,14 +144,14 @@ class UserController extends Controller
             'password' => 'require',
         ]);
 
-        if (!$validator->check($input)) {
-            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string)$validator->getError());
+        if (! $validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
         }
 
         $model = $this->dao->firstMobile($input['mobile']);
 
         // 判断账号密码是否正确
-        if (!password_verify($input['password'], $model->password)) {
+        if (! password_verify($input['password'], $model->password)) {
             throw new BusinessException(ErrorCode::USRE_NOT_PASSWORD_EXIST);
         }
 
