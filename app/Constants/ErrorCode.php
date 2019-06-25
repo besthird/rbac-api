@@ -48,12 +48,12 @@ class ErrorCode extends AbstractConstants
     /**
      * @Message("角色不存在")
      */
-    const ROLE_NOT_EXIST = 1102;
+    const ROLE_NOT_EXIST = 1302;
 
     /**
      * @Message("路由不存在")
      */
-    const ROUTER_NOT_EXIST = 1103;
+    const ROUTER_NOT_EXIST = 1403;
 
     /**
      * @Message("管理员已存在")
@@ -64,4 +64,14 @@ class ErrorCode extends AbstractConstants
      * @Message("管理员不存在")
      */
     const USRE_NOT_EXIST = 1204;
+
+    /**
+     * @Message("管理员密码错误")
+     */
+    const USRE_NOT_PASSWORD_EXIST = 1205;
+
+    /**
+     * @Message("管理员账号冻结")
+     */
+    const USRE_NOT_FROZEN_EXIST = 1206;
 }

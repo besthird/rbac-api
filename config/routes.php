@@ -30,6 +30,7 @@ Router::get('/user', 'App\Controller\UserController@index');
 Router::post('/user/delete', 'App\Controller\UserController@delete');
 Router::get('/user/find', 'App\Controller\UserController@find');
 Router::post('/user/status', 'App\Controller\UserController@status');
+Router::post('/user/login', 'App\Controller\UserController@login');
 
 Router::get('/role', 'App\Controller\RoleController@index');
 Router::post('/role/save', 'App\Controller\RoleController@save');
@@ -37,3 +38,4 @@ Router::get('/role/info', 'App\Controller\RoleController@info');
 Router::post('/role/delete', 'App\Controller\RoleController@delete');
 Router::post('/role/status', 'App\Controller\RoleController@status');
 Router::get('/role/router/list', 'App\Controller\RoleController@roleRouterAll');
+

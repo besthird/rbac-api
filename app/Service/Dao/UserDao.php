@@ -34,6 +34,20 @@ class UserDao extends Dao
         return $model;
     }
 
+    /**
+     * @param $mobile
+     * @return \Hyperf\Database\Model\Builder|\Hyperf\Database\Model\Model|object|null
+     */
+    public function firstMobile($mobile)
+    {
+        $model = User::query()->where(['mobile'=>$mobile])->first();
+        if (!$model) {
+            throw new BusinessException(ErrorCode::USRE_NOT_EXIST);
+        }
+
+        return $model;
+    }
+
     public function delete($id)
     {
         return User::query()->where('id', $id)->delete();
