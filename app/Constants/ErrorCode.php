@@ -74,4 +74,9 @@ class ErrorCode extends AbstractConstants
      * @Message("管理员账号冻结")
      */
     const USRE_NOT_FROZEN_EXIST = 1206;
+
+    /**
+     * @Message("重新登录")
+     */
+    const USRE__NOT_LOGIN_EXIST = 1207;
 }
