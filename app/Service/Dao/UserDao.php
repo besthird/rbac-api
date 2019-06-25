@@ -36,12 +36,12 @@ class UserDao extends Dao
 
     /**
      * @param $mobile
-     * @return \Hyperf\Database\Model\Builder|\Hyperf\Database\Model\Model|object|null
+     * @return null|\Hyperf\Database\Model\Builder|\Hyperf\Database\Model\Model|object
      */
     public function firstMobile($mobile)
     {
-        $model = User::query()->where(['mobile'=>$mobile])->first();
-        if (!$model) {
+        $model = User::query()->where(['mobile' => $mobile])->first();
+        if (! $model) {
             throw new BusinessException(ErrorCode::USRE_NOT_EXIST);
         }
 

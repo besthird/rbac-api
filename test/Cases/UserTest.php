@@ -26,7 +26,7 @@ class UserTest extends HttpTestCase
             'id' => 0,
             'role_id' => 1,
             'name' => '用户测试' . rand(0, 100),
-            'mobile' => '15904435047',
+            'mobile' => '15904435'. rand(0, 100),
             'password' => '123456',
             'status' => '1',
         ]);

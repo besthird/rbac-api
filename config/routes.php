@@ -38,4 +38,3 @@ Router::get('/role/info', 'App\Controller\RoleController@info');
 Router::post('/role/delete', 'App\Controller\RoleController@delete');
 Router::post('/role/status', 'App\Controller\RoleController@status');
 Router::get('/role/router/list', 'App\Controller\RoleController@roleRouterAll');
-
