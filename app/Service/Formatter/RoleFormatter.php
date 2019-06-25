@@ -31,7 +31,11 @@ class RoleFormatter extends Formatter
         ];
     }
 
-    public function small()
+    public function small(Role $model)
     {
+        return [
+            'id' => $model->id,
+            'name' => $model->name,
+        ];
     }
 }

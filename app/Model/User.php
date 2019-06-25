@@ -50,4 +50,9 @@ class User extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'status' => 'integer'];
+
+    public function role()
+    {
+        return $this->hasMany(Role::class, 'user_id', 'id');
+    }
 }
