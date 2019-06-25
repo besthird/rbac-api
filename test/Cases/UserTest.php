@@ -24,6 +24,7 @@ class UserTest extends HttpTestCase
     {
         $res = $this->post('/user/save', [
             'id' => 0,
+            'role_id' => 1,
             'name' => '用户测试' . rand(0, 100),
             'mobile' => '15904435047',
             'password' => '123456',

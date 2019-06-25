@@ -60,9 +60,9 @@ class UserDao extends Dao
     /**
      * @param $input
      * @param int $id
-     * @return bool
+     * @return object
      */
-    public function save($input, $id = 0): bool
+    public function save($input, $id = 0): object
     {
         $model = new User();
 
@@ -77,6 +77,7 @@ class UserDao extends Dao
             }
             $model->name = $input['name'];
         }
+
         if (! empty($input['mobile'])) {
             $model->mobile = $input['mobile'];
         }
@@ -88,8 +89,8 @@ class UserDao extends Dao
         if (! empty($input['status'])) {
             $model->status = $input['status'];
         }
-
-        return $model->save();
+        $model->save();
+        return $model;
     }
 
     public function status($id)

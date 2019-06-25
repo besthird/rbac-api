@@ -15,6 +15,7 @@ namespace App\Controller;
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Service\Dao\UserDao;
+use App\Service\Dao\UserRoleDao;
 use App\Service\Formatter\UserFormatter;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
@@ -26,6 +27,12 @@ class UserController extends Controller
      * @var UserDao
      */
     protected $dao;
+
+    /**
+     * @Inject
+     * @var UserRoleDao
+     */
+    protected $userRole;
 
     /**
      * list.
@@ -81,6 +88,7 @@ class UserController extends Controller
         $validator = Validate::make([
             'id' => 'require|integer|>=:0',
             'name' => 'require',
+            'role_id' => 'require',
             'mobile' => 'require',
             'password' => 'require',
             'status' => 'require',
@@ -91,6 +99,9 @@ class UserController extends Controller
         }
 
         $result = $this->dao->save($input, $input['id']);
+
+        $this->userRole->deleteAll($result->id);
+        $this->userRole->save($input['role_id'], $result->id);
 
         return $this->response->success($result);
     }
