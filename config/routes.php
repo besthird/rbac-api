@@ -23,6 +23,7 @@ Router::get('/project/router/list', 'App\Controller\ProjectController@projectRou
 Router::post('/group/save', 'App\Controller\GroupController@save');
 Router::get('/group', 'App\Controller\GroupController@index');
 Router::post('/group/delete', 'App\Controller\GroupController@delete');
+Router::get('/group/find', 'App\Controller\GroupController@find');
 
 Router::post('/user/save', 'App\Controller\UserController@save');
 Router::get('/user', 'App\Controller\UserController@index');

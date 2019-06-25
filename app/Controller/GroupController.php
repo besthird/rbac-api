@@ -77,6 +77,9 @@ class GroupController extends Controller
         return $this->response->success($result);
     }
 
+    /**
+     * del.
+     */
     public function delete()
     {
         $id = $this->request->input('id');
@@ -88,6 +91,22 @@ class GroupController extends Controller
         $result = $this->dao->delete($id);
 
         di()->get(RouterService::class)->resetRouters();
+
+        return $this->response->success($result);
+    }
+
+    /**
+     * find.
+     */
+    public function find()
+    {
+        $id = $this->request->input('id');
+
+        if (empty($id)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID);
+        }
+
+        $result = $this->dao->first($id);
 
         return $this->response->success($result);
     }

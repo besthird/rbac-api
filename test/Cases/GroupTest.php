@@ -48,4 +48,13 @@ class GroupTest extends HttpTestCase
 
         $this->assertSame(0, $res['code']);
     }
+
+    public function testGroupFind()
+    {
+        $res = $this->get('/group/find', [
+            'id' => 1,
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
 }
