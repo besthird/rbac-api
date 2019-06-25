@@ -91,7 +91,6 @@ class UserController extends Controller
             'name' => 'require',
             'role_id' => 'require',
             'mobile' => 'require|mobile',
-            'password' => 'require',
             'status' => 'require',
         ]);
 

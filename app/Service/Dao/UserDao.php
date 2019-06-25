@@ -22,7 +22,7 @@ class UserDao extends Dao
     /**
      * @param $id
      * @param bool $throw
-     * @return User
+     * @return
      */
     public function first($id, $throw = true)
     {
@@ -30,7 +30,7 @@ class UserDao extends Dao
         if ($throw && empty($model)) {
             throw new BusinessException(ErrorCode::USRE_NOT_EXIST);
         }
-
+        $model['password'] = '';
         return $model;
     }
 
