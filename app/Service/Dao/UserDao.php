@@ -62,7 +62,7 @@ class UserDao extends Dao
      * @param int $id
      * @return bool
      */
-    public function save($input, $id = 0)
+    public function save($input, $id = 0):bool 
     {
         $model = new User();
 
