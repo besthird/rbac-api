@@ -27,11 +27,7 @@ class JwtMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $token = '';
-        $headers = $request->getHeader('TOKEN');
-        if ($headers){
-            $token = $headers[0];
-        }
+        $token = $request->getHeaderLine('TOKEN');
         if (!$token){
             throw new BusinessException(ErrorCode::USRE__NOT_LOGIN_EXIST);
         }

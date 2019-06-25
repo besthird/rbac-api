@@ -14,6 +14,8 @@ use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
 
+Router::post('/user/login', 'App\Controller\UserController@login');
+
 Router::get('/project', 'App\Controller\ProjectController@index');
 Router::post('/project/save', 'App\Controller\ProjectController@save');
 Router::get('/project/info', 'App\Controller\ProjectController@info');
@@ -30,7 +32,6 @@ Router::get('/user', 'App\Controller\UserController@index');
 Router::post('/user/delete', 'App\Controller\UserController@delete');
 Router::get('/user/find', 'App\Controller\UserController@find');
 Router::post('/user/status', 'App\Controller\UserController@status');
-Router::post('/user/login', 'App\Controller\UserController@login');
 
 Router::get('/role', 'App\Controller\RoleController@index');
 Router::post('/role/save', 'App\Controller\RoleController@save');
