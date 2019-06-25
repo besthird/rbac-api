@@ -16,6 +16,7 @@ use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
 use App\Service\Dao\UserDao;
 use App\Service\Formatter\UserFormatter;
+use App\Utils\JwtAuth;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
 
@@ -40,8 +41,8 @@ class UserController extends Controller
             'id' => 'integer>=:0',
         ]);
 
-        if (! $validator->check($input)) {
-            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
+        if (!$validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string)$validator->getError());
         }
 
         [$count, $items] = $this->dao->find($input, $offset, $limit);
@@ -86,8 +87,8 @@ class UserController extends Controller
             'status' => 'require',
         ]);
 
-        if (! $validator->check($input)) {
-            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
+        if (!$validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string)$validator->getError());
         }
 
         $result = $this->dao->save($input, $input['id']);
@@ -118,6 +119,39 @@ class UserController extends Controller
             throw new BusinessException(ErrorCode::PARAMS_INVALID);
         }
         $result = $this->dao->delete($id);
+
+        return $this->response->success($result);
+    }
+
+    public function login()
+    {
+        $result = [];
+        $input = $this->request->all();
+
+        $validator = Validate::make([
+            'mobile' => 'require',
+            'password' => 'require',
+        ]);
+
+        if (!$validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string)$validator->getError());
+        }
+
+        $model = $this->dao->firstMobile($input['mobile']);
+
+        // 判断账号密码是否正确
+        if (!password_verify($input['password'], $model->password)) {
+            throw new BusinessException(ErrorCode::USRE_NOT_PASSWORD_EXIST);
+        }
+
+        // 判断是否冻结
+        if ($model->status == 0) {
+            throw new BusinessException(ErrorCode::USRE_NOT_FROZEN_EXIST);
+        }
+
+        $token = JwtAuth::getToken(['userId' => $model->id]);
+
+        $result['token'] = $token;
 
         return $this->response->success($result);
     }
