@@ -39,7 +39,14 @@ class GroupDao extends Dao
         return Group::query()->where('id', $id)->delete();
     }
 
-    public function find($input, $with = [], $offset, $limit)
+    /**
+     * @param $input
+     * @param array $with
+     * @param $offset
+     * @param $limit
+     * @return array
+     */
+    public function find($input, $with = [], $offset, $limit): array
     {
         $query = Group::query();
         if ($with) {
@@ -48,6 +55,9 @@ class GroupDao extends Dao
         if (isset($input['id'])) {
             $query->where('id', $input['id']);
         }
+        if (isset($input['name'])) {
+            $query->where('name', $input['name']);
+        }
         if (isset($input['project_id'])) {
             $query->where('project_id', $input['project_id']);
         }
@@ -55,16 +65,43 @@ class GroupDao extends Dao
         return ModelHelper::pagination($query, $offset, $limit);
     }
 
-    public function save($input, $id = 0)
+    /**
+     * @param $input
+     * @param int $id
+     * @return bool
+     */
+    public function save($input, $id = 0): bool
     {
         $model = new Group();
         if ($id > 0) {
             $model = $this->first($id);
         }
 
+        if (! empty($input['name'])) {
+            $exist = $this->exist($input['name'], $id);
+            if ($exist) {
+                throw new BusinessException(ErrorCode::GROUP_EXIST);
+            }
+            $model->name = $input['name'];
+        }
+
         $model->project_id = $input['project_id'];
-        $model->name = $input['name'];
 
         return $model->save();
+    }
+
+    /**
+     * @param string $name
+     * @param int $id
+     * @return bool
+     */
+    public function exist(string $name, $id = 0): bool
+    {
+        $query = Group::query()->where('name', $name);
+        if ($id > 0) {
+            $query->where('id', '<>', $id);
+        }
+
+        return $query->exists();
     }
 }
