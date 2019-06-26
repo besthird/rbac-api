@@ -25,7 +25,7 @@ class GroupTest extends HttpTestCase
         $res = $this->json('/group/save', [
             'id' => 1,
             'project_id' => 1,
-            'name' => '测试小组，误删',
+            'name' => '默认小组',
         ]);
 
         $this->assertSame(0, $res['code']);

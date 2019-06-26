@@ -30,9 +30,9 @@ class RoleTest extends HttpTestCase
     public function testRoleSave()
     {
         $res = $this->json('/role/save', [
-            'id' => 0,
-            'name' => '角色1',
-            'comment' => '角色1测试',
+            'id' => 1,
+            'name' => '默认角色',
+            'comment' => '默认角色',
             'status' => 1,
         ]);
 
@@ -42,7 +42,7 @@ class RoleTest extends HttpTestCase
     public function testRoleDelete()
     {
         $res = $this->json('/role/delete', [
-            'id' => 1,
+            'id' => 2,
         ]);
 
         $this->assertSame(0, $res['code']);
