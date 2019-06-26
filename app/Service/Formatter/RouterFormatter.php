@@ -28,8 +28,8 @@ class RouterFormatter extends Formatter
             'name' => $model->name,
             'route' => $model->route,
             'method' => $model->method,
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at,
+            'created_at' => (string) $model->created_at,
+            'updated_at' => (string) $model->updated_at,
         ];
     }
 
