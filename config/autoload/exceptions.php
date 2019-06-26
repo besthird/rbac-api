@@ -15,5 +15,8 @@ return [
         'http' => [
             App\Exception\Handler\BusinessExceptionHandler::class,
         ],
+        'sdk' => [
+            App\Exception\Handler\BusinessExceptionHandler::class,
+        ],
     ],
 ];
