@@ -47,6 +47,9 @@ class RouterDao extends Dao
         if ($with) {
             $query->with(...$with);
         }
+        if (! empty($input['name'])) {
+            $query->where('route', $input['name']);
+        }
         if (! empty($input['route'])) {
             $query->where('route', $input['route']);
         }
