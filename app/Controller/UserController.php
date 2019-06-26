@@ -92,7 +92,7 @@ class UserController extends Controller
             'id' => 'require|integer|>=:0',
             'name' => 'require',
             // TODO: 用户角色应该是个列表，这里是多对多的关系
-            'role_id' => 'require|integer|>=:0',
+            'role_id' => 'require|>=:0',
             'mobile' => 'require|mobile',
             'status' => 'require',
         ]);
@@ -102,9 +102,7 @@ class UserController extends Controller
         }
 
         $user = $this->dao->save($input, $input['id']);
-
-        $roleIds = [$input['role_id']];
-
+        $roleIds = $input['role_id'];
         $rels = $this->userRole->all($user->id);
 
         foreach ($roleIds as $roleId) {
