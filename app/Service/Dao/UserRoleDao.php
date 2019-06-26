@@ -32,19 +32,8 @@ class UserRoleDao extends Dao
         return $model->save();
     }
 
-    /**
-     * 删除userRole.
-     * @param $user_id
-     * @return bool
-     */
-    public function deleteAll($user_id): bool
+    public function all($userId)
     {
-        $model = UserRole::query()->where('user_id', $user_id);
-
-        if ($model) {
-            $model->delete();
-        }
-
-        return true;
+        return UserRole::query()->where('user_id', $userId)->get();
     }
 }
