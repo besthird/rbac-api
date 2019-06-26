@@ -14,6 +14,7 @@ namespace App\Controller;
 
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
+use App\Model\RoleRouter;
 use App\Service\Dao\RoleDao;
 use App\Service\Dao\RoleRouterDao;
 use App\Service\Formatter\RoleFormatter;
@@ -67,10 +68,11 @@ class RoleController extends Controller
         $input = $this->request->all();
 
         $validator = Validate::make([
-            'id' => 'require>=:0',
+            'id' => 'require|>=:0',
             'name' => 'require',
             'comment' => 'require',
             'status' => 'require',
+            'router_list' => 'array',
         ]);
 
         if (! $validator->check($input)) {
@@ -80,15 +82,22 @@ class RoleController extends Controller
         $model = $this->dao->save($input, $input['id']);
 
         // 先删除
-        $this->roleRouterDao->delRoleIdAll($model->id);
+        $rels = $this->roleRouterDao->all($model->id);
 
-        $router_list = $input['router_list'] ?? [];
-
-        // 保存
-        if ($router_list && is_array($router_list)) {
-            foreach ($router_list as $router_id) {
-                $this->roleRouterDao->save($model->id, $router_id);
+        $routers = $input['router_list'] ?? [];
+        foreach ($routers as $router) {
+            $rel = $rels->shift();
+            if (empty($rel)) {
+                $rel = new RoleRouter();
+                $rel->role_id = $model->id;
             }
+            $rel->router_id = $router;
+            $rel->save();
+        }
+
+        // 删除多余的关联数据
+        while ($rel = $rels->shift()) {
+            $rel->delete();
         }
 
         return $this->response->success($model);

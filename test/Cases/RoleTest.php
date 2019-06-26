@@ -31,8 +31,8 @@ class RoleTest extends HttpTestCase
     {
         $res = $this->json('/role/save', [
             'id' => 1,
-            'name' => '默认角色',
-            'comment' => '默认角色',
+            'name' => '超级角色',
+            'comment' => '超级管理员权限角色',
             'status' => 1,
         ]);
 
