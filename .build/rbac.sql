@@ -7,7 +7,7 @@
 #
 # Host: coding.ecs.lmx0536.cn (MySQL 5.5.56-MariaDB)
 # Database: rbac
-# Generation Time: 2019-06-26 04:31:33 +0000
+# Generation Time: 2019-06-26 04:56:13 +0000
 # ************************************************************
 
 
@@ -94,7 +94,7 @@ LOCK TABLES `role` WRITE;
 
 INSERT INTO `role` (`id`, `name`, `comment`, `status`, `created_at`, `updated_at`)
 VALUES
-	(1,'超级管理员','超级权限',1,'2019-06-21 00:00:00','2019-06-21 00:00:00');
+	(1,'超级角色','超级管理员权限角色',1,'2019-06-21 00:00:00','2019-06-26 04:56:01');
 
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -178,7 +178,7 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`id`, `name`, `mobile`, `password`, `status`, `created_at`, `updated_at`)
 VALUES
-	(1,'超级管理员','admin','$2y$12$041vBV78nW43KdtBs7FmYew9F/Z/IfPvL6haelaL.TdyEQWzexkVG',1,'2019-06-21 00:00:00','2019-06-21 00:00:00');
+	(1,'超级管理员','15963611521','$2y$12$lOrGXRD05tbWRUvK7JIfw.wuKGe0yV28pdOe/TzZszxaNgyus6jT2',0,'2019-06-21 00:00:00','2019-06-26 04:56:02');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
