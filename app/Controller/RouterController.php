@@ -17,6 +17,7 @@ use App\Exception\BusinessException;
 use App\Service\Dao\GroupDao;
 use App\Service\Dao\ProjectDao;
 use App\Service\Dao\RouterDao;
+use App\Service\Formatter\RouterFormatter;
 use App\Service\RouterService;
 use Hyperf\Di\Annotation\Inject;
 use think\Validate;
@@ -41,12 +42,38 @@ class RouterController extends Controller
      */
     protected $groupDao;
 
-    public function index()
+    /**
+     * @return object
+     */
+    public function index(): object
     {
-        return $this->response->success();
+        $input = $this->request->all();
+        $offset = $this->request->input('offset', 0);
+        $limit = $this->request->input('limit', 5);
+
+        $validator = Validate::make([
+            'id' => 'integer|>=:0',
+        ]);
+        if (! $validator->check($input)) {
+            throw new BusinessException(ErrorCode::ROLE_NOT_EXIST, (string) $validator->getError());
+        }
+
+        [$count, $items] = $this->dao->index($input, ['project', 'group'], $offset, $limit);
+        $result = [];
+        foreach ($items as $item) {
+            $result[] = RouterFormatter::instance()->detail($item, $item->project, $item->group);
+        }
+
+        return $this->response->success([
+            'count' => $count,
+            'items' => $result,
+        ]);
     }
 
-    public function save()
+    /**
+     * @return object
+     */
+    public function save(): object
     {
         $input = $this->request->all();
 
@@ -71,6 +98,36 @@ class RouterController extends Controller
         $result = $this->dao->save($input, $input['id']);
 
         di()->get(RouterService::class)->resetRouters();
+
+        return $this->response->success($result);
+    }
+
+    /**
+     * @return object
+     */
+    public function delete(): object
+    {
+        $id = $this->request->input('id');
+
+        if (empty($id)) {
+            throw new BusinessException(ErrorCode::ROLE_NOT_EXIST);
+        }
+        $result = $this->dao->delete($id);
+
+        return $this->response->success($result);
+    }
+
+    /**
+     * @return object
+     */
+    public function find(): object
+    {
+        $id = $this->request->input('id');
+
+        if (empty($id)) {
+            throw new BusinessException(ErrorCode::Router__NOT_EXIST);
+        }
+        $result = $this->dao->first($id);
 
         return $this->response->success($result);
     }

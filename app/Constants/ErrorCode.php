@@ -79,4 +79,14 @@ class ErrorCode extends AbstractConstants
      * @Message("重新登录")
      */
     const USRE__NOT_LOGIN_EXIST = 1207;
+
+    /**
+     * @Message("路由不存在")
+     */
+    const Router__NOT_EXIST = 1208;
+
+    /**
+     * @Message("路由存在")
+     */
+    const Router__EXIST = 1209;
 }

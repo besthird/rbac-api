@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace App\Service\Formatter;
 
+use App\Model\Group;
+use App\Model\Project;
 use App\Model\Router;
 
 class RouterFormatter extends Formatter
@@ -27,5 +29,13 @@ class RouterFormatter extends Formatter
             'route' => $model->route,
             'method' => $model->method,
         ];
+    }
+
+    public function detail(Router $model, ?Project $project, ?Group $group)
+    {
+        $result = $this->small($model);
+        $result['project'] = ProjectFormatter::instance()->small($project);
+        $result['group'] = GroupFormatter::instance()->small($group);
+        return $result;
     }
 }

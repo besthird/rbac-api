@@ -14,6 +14,7 @@ namespace App\Service\Dao;
 
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
+use App\Kernel\Helper\ModelHelper;
 use App\Model\Router;
 
 class RouterDao extends Dao
@@ -33,11 +34,46 @@ class RouterDao extends Dao
         return $model;
     }
 
-    public function save($input, $id)
+    /**
+     * @param $input
+     * @param array $with
+     * @param $offset
+     * @param $limit
+     * @return array
+     */
+    public function index($input, $with = [], $offset, $limit): array
+    {
+        $query = Router::query();
+        if ($with) {
+            $query->with(...$with);
+        }
+        if (! empty($input['route'])) {
+            $query->where('route', $input['route']);
+        }
+        if (! empty($input['project_id'])) {
+            $query->where('project_id', $input['project_id']);
+        }
+        if (! empty($input['group_id'])) {
+            $query->where('route', $input['group_id']);
+        }
+
+        return ModelHelper::pagination($query, $offset, $limit);
+    }
+
+    /**
+     * @param $input
+     * @param $id
+     * @return bool
+     */
+    public function save($input, $id): bool
     {
         $model = new Router();
         if ($id > 0) {
             $model = $this->first($id);
+        }
+        $exist = $this->exist($input['name'], $id);
+        if ($exist) {
+            throw new BusinessException(ErrorCode::Router__EXIST);
         }
         $model->project_id = $input['project_id'];
         $model->group_id = $input['group_id'];
@@ -45,5 +81,30 @@ class RouterDao extends Dao
         $model->name = $input['name'];
         $model->route = $input['route'];
         $model->method = $input['method'];
+        return $model->save();
+    }
+
+    /**
+     * @param string $name
+     * @param int $id
+     * @return bool
+     */
+    public function exist(string $name, $id = 0): bool
+    {
+        $query = Router::query()->where('name', $name);
+        if ($id > 0) {
+            $query->where('id', '<>', $id);
+        }
+
+        return $query->exists();
+    }
+
+    /**
+     * @param $id
+     * @return int|mixed
+     */
+    public function delete($id)
+    {
+        return Router::query()->where('id', $id)->delete();
     }
 }

@@ -53,7 +53,13 @@ class UserDao extends Dao
         return User::query()->where('id', $id)->delete();
     }
 
-    public function find($input, $offset, $limit)
+    /**
+     * @param $input
+     * @param $offset
+     * @param $limit
+     * @return array
+     */
+    public function find($input, $offset, $limit): array
     {
         $query = User::query();
         if (isset($input['id']) && ! empty($input['id'])) {
@@ -68,6 +74,7 @@ class UserDao extends Dao
         if (isset($input['status'])) {
             $query->where('status', $input['status']);
         }
+
         return ModelHelper::pagination($query, $offset, $limit);
     }
 

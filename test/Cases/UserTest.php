@@ -23,11 +23,11 @@ class UserTest extends HttpTestCase
     public function testUserSave()
     {
         $res = $this->post('/user/save', [
-            'id' => 0,
+            'id' => 1,
             'role_id' => 1,
             'name' => '用户测试' . rand(0, 100),
             'mobile' => '15904435345',
-            'password' => '123456',
+            'password' => '',
             'status' => '1',
         ]);
 

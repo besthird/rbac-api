@@ -39,3 +39,8 @@ Router::get('/role/info', 'App\Controller\RoleController@info');
 Router::post('/role/delete', 'App\Controller\RoleController@delete');
 Router::post('/role/status', 'App\Controller\RoleController@status');
 Router::get('/role/router/list', 'App\Controller\RoleController@roleRouterAll');
+
+Router::get('/router/index', 'App\Controller\RouterController@index');
+Router::post('/router/save', 'App\Controller\RouterController@save');
+Router::post('/router/delete', 'App\Controller\RouterController@delete');
+Router::get('/router/find', 'App\Controller\RouterController@find');

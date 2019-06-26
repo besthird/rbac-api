@@ -52,4 +52,14 @@ class Router extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'project_id' => 'integer', 'group_id' => 'integer', 'type' => 'integer'];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id', 'id');
+    }
 }
