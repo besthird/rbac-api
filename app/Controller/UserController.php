@@ -14,6 +14,7 @@ namespace App\Controller;
 
 use App\Constants\ErrorCode;
 use App\Exception\BusinessException;
+use App\Model\UserRole;
 use App\Service\Dao\UserDao;
 use App\Service\Dao\UserRoleDao;
 use App\Service\Formatter\UserFormatter;
@@ -42,7 +43,7 @@ class UserController extends Controller
     {
         $input = $this->request->all();
         $offset = $this->request->input('offset', 0);
-        $limit = $this->request->input('limit', 0);
+        $limit = $this->request->input('limit', 10);
 
         $validator = Validate::make([
             'id' => 'integer>=:0',
@@ -75,7 +76,8 @@ class UserController extends Controller
             throw new BusinessException(ErrorCode::USRE_NOT_EXIST);
         }
 
-        $result = $this->dao->first($id);
+        $model = $this->dao->first($id);
+        $result = UserFormatter::instance()->base($model);
         return $this->response->success($result);
     }
 
@@ -89,7 +91,8 @@ class UserController extends Controller
         $validator = Validate::make([
             'id' => 'require|integer|>=:0',
             'name' => 'require',
-            'role_id' => 'require',
+            // TODO: 用户角色应该是个列表，这里是多对多的关系
+            'role_id' => 'require|integer|>=:0',
             'mobile' => 'require|mobile',
             'status' => 'require',
         ]);
@@ -98,10 +101,27 @@ class UserController extends Controller
             throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
         }
 
-        $result = $this->dao->save($input, $input['id']);
+        $user = $this->dao->save($input, $input['id']);
 
-        $this->userRole->deleteAll($result->id);
-        $this->userRole->save($input['role_id'], $result->id);
+        $roleIds = [$input['role_id']];
+
+        $rels = $this->userRole->all($user->id);
+
+        foreach ($roleIds as $roleId) {
+            $rel = $rels->shift();
+            if (empty($rel)) {
+                $rel = new UserRole();
+                $rel->user_id = $user->id;
+            }
+            $rel->role_id = $roleId;
+            $rel->save();
+        }
+
+        while ($rel = $rels->shift()) {
+            $rel->delete();
+        }
+
+        $result = UserFormatter::instance()->base($user);
 
         return $this->response->success($result);
     }

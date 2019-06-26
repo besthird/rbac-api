@@ -24,14 +24,8 @@ class RoleRouterDao extends Dao
         return $model->save();
     }
 
-    public function delRoleIdAll($id)
+    public function all($roleId)
     {
-        $model = RoleRouter::query()->where(['role_id' => $id]);
-
-        if ($model) {
-            $model->delete();
-        }
-
-        return true;
+        return RoleRouter::query()->where('role_id', $roleId)->get();
     }
 }

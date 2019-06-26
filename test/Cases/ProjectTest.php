@@ -31,9 +31,9 @@ class ProjectTest extends HttpTestCase
     {
         $res = $this->json('/project/save', [
             'id' => 1,
-            'key' => 'test',
-            'name' => '单测专用项目',
-            'comment' => '单测专用项目, 勿动',
+            'key' => 'default',
+            'name' => '默认项目',
+            'comment' => '默认项目',
         ]);
 
         $this->assertSame(0, $res['code']);

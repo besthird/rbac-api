@@ -25,10 +25,10 @@ class UserTest extends HttpTestCase
         $res = $this->post('/user/save', [
             'id' => 1,
             'role_id' => 1,
-            'name' => '用户测试' . rand(0, 100),
-            'mobile' => '15904435345',
-            'password' => '',
-            'status' => '1',
+            'name' => '超级管理员',
+            'mobile' => '15963611521',
+            'password' => 'besthird',
+            'status' => 1,
         ]);
 
         $this->assertSame(0, $res['code']);
@@ -49,7 +49,7 @@ class UserTest extends HttpTestCase
     public function testUserDelete()
     {
         $res = $this->post('/user/delete', [
-            'id' => 8,
+            'id' => 2,
         ]);
 
         $this->assertSame(0, $res['code']);

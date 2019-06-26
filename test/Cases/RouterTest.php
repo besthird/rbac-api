@@ -32,13 +32,13 @@ class RouterTest extends HttpTestCase
     public function testRouterSave()
     {
         $res = $this->post('/router/save', [
-            'id' => 0,
-            'project_id' => '1',
-            'group_id' => '1',
-            'type' => '1',
-            'name' => '管理员' . rand(0, 100),
-            'route' => '/user',
-            'method' => 'get',
+            'id' => 1,
+            'project_id' => 1,
+            'group_id' => 1,
+            'type' => 1,
+            'name' => '默认路由',
+            'route' => '/',
+            'method' => 'GET',
         ]);
 
         return $this->assertSame(0, $res['code']);
@@ -47,7 +47,7 @@ class RouterTest extends HttpTestCase
     public function testRouterDelete()
     {
         $res = $this->post('/router/delete', [
-            'id' => 1,
+            'id' => 2,
         ]);
 
         return $this->assertSame(0, $res['code']);
@@ -56,7 +56,7 @@ class RouterTest extends HttpTestCase
     public function testRouterFind()
     {
         $res = $this->get('/router/find', [
-            'id' => 2,
+            'id' => 1,
         ]);
 
         return $this->assertSame(0, $res['code']);

@@ -15,4 +15,7 @@ return [
         \App\Middleware\CorsMiddleware::class,
         \App\Middleware\DebugMiddleware::class,
     ],
+    'sdk' => [
+        \App\Middleware\DebugMiddleware::class,
+    ],
 ];

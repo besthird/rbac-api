@@ -7,7 +7,7 @@
 #
 # Host: coding.ecs.lmx0536.cn (MySQL 5.5.56-MariaDB)
 # Database: rbac
-# Generation Time: 2019-06-20 05:10:48 +0000
+# Generation Time: 2019-06-26 04:56:13 +0000
 # ************************************************************
 
 
@@ -36,6 +36,15 @@ CREATE TABLE `group` (
   KEY `INDEX_PROJECT` (`project_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `group` WRITE;
+/*!40000 ALTER TABLE `group` DISABLE KEYS */;
+
+INSERT INTO `group` (`id`, `project_id`, `name`, `created_at`, `updated_at`)
+VALUES
+	(1,1,'默认小组','2019-06-21 00:00:00','2019-06-23 11:08:51');
+
+/*!40000 ALTER TABLE `group` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table project
@@ -54,6 +63,15 @@ CREATE TABLE `project` (
   KEY `UNIQUE_KEY` (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `project` WRITE;
+/*!40000 ALTER TABLE `project` DISABLE KEYS */;
+
+INSERT INTO `project` (`id`, `key`, `name`, `comment`, `created_at`, `updated_at`)
+VALUES
+	(1,'default','默认项目','默认项目','2019-06-21 00:00:00','2019-06-21 00:00:00');
+
+/*!40000 ALTER TABLE `project` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table role
@@ -71,6 +89,15 @@ CREATE TABLE `role` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+
+INSERT INTO `role` (`id`, `name`, `comment`, `status`, `created_at`, `updated_at`)
+VALUES
+	(1,'超级角色','超级管理员权限角色',1,'2019-06-21 00:00:00','2019-06-26 04:56:01');
+
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table role_router
@@ -88,6 +115,15 @@ CREATE TABLE `role_router` (
   KEY `INDEX_ROLE_ID` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `role_router` WRITE;
+/*!40000 ALTER TABLE `role_router` DISABLE KEYS */;
+
+INSERT INTO `role_router` (`id`, `role_id`, `router_id`, `created_at`, `updated_at`)
+VALUES
+	(1,1,1,'2019-06-21 00:00:00','2019-06-21 00:00:00');
+
+/*!40000 ALTER TABLE `role_router` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table router
@@ -109,6 +145,15 @@ CREATE TABLE `router` (
   KEY `INDEX_PROJECT_ROUTE` (`project_id`,`route`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `router` WRITE;
+/*!40000 ALTER TABLE `router` DISABLE KEYS */;
+
+INSERT INTO `router` (`id`, `project_id`, `group_id`, `type`, `name`, `route`, `method`, `created_at`, `updated_at`)
+VALUES
+	(1,1,1,1,'默认路由','/','GET','2019-06-21 00:00:00','2019-06-21 00:00:00');
+
+/*!40000 ALTER TABLE `router` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table user
@@ -128,6 +173,15 @@ CREATE TABLE `user` (
   UNIQUE KEY `UNIQUE_NAME` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+
+INSERT INTO `user` (`id`, `name`, `mobile`, `password`, `status`, `created_at`, `updated_at`)
+VALUES
+	(1,'超级管理员','15963611521','$2y$12$lOrGXRD05tbWRUvK7JIfw.wuKGe0yV28pdOe/TzZszxaNgyus6jT2',0,'2019-06-21 00:00:00','2019-06-26 04:56:02');
+
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table user_role
@@ -145,6 +199,15 @@ CREATE TABLE `user_role` (
   KEY `INDEX_USER_ID` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+LOCK TABLES `user_role` WRITE;
+/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
+
+INSERT INTO `user_role` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`)
+VALUES
+	(1,1,1,'2019-06-21 00:00:00','2019-06-21 00:00:00');
+
+/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 
