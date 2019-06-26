@@ -43,7 +43,7 @@ class UserController extends Controller
     {
         $input = $this->request->all();
         $offset = $this->request->input('offset', 0);
-        $limit = $this->request->input('limit', 0);
+        $limit = $this->request->input('limit', 10);
 
         $validator = Validate::make([
             'id' => 'integer>=:0',

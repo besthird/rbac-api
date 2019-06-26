@@ -34,7 +34,7 @@ class RoleTest extends HttpTestCase
             'name' => '超级角色',
             'comment' => '超级管理员权限角色',
             'status' => 1,
-            'router_list' => [1]
+            'router_list' => [1],
         ]);
 
         $this->assertSame(0, $res['code']);
