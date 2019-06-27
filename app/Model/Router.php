@@ -23,6 +23,10 @@ namespace App\Model;
  */
 class Router extends Model
 {
+    const TYPE_VIEW = 0;
+
+    const TYPE_API = 1;
+
     /**
      * The table associated with the model.
      *

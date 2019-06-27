@@ -32,6 +32,11 @@ class RouterDao extends Dao
         return $model;
     }
 
+    public function all()
+    {
+        return Router::query()->get();
+    }
+
     /**
      * @param $input
      * @param array $with

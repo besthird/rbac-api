@@ -58,4 +58,17 @@ class User extends Model
     {
         return $this->hasMany(Role::class, 'user_id', 'id');
     }
+
+    public function isAdmin(): bool
+    {
+        if ($this->id === 1) {
+            return true;
+        }
+
+        if ($this->role && $this->role->id === 1) {
+            return true;
+        }
+
+        return false;
+    }
 }

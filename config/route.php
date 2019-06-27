@@ -38,3 +38,6 @@ Router::get('/router/index', 'App\Controller\RouterController@index');
 Router::post('/router/save', 'App\Controller\RouterController@save');
 Router::post('/router/delete', 'App\Controller\RouterController@delete');
 Router::get('/router/find', 'App\Controller\RouterController@find');
+
+Router::get('/auth/routers', 'App\Controller\AuthController@routers');
+Router::post('/auth/check', 'App\Controller\AuthController@check');
