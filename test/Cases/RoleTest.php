@@ -48,4 +48,31 @@ class RoleTest extends HttpTestCase
 
         $this->assertSame(0, $res['code']);
     }
+
+    public function testRoleInfo()
+    {
+        $res = $this->get('/role/info', [
+            'id' => 2,
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
+    public function testRoleStatus()
+    {
+        $res = $this->post('/role/status', [
+            'id' => 2,
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
+    public function testRoleRouterList()
+    {
+        $res = $this->get('/role/router/list', [
+            'id' => 1,
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
 }

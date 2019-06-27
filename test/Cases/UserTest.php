@@ -24,7 +24,7 @@ class UserTest extends HttpTestCase
     {
         $res = $this->post('/user/save', [
             'id' => 1,
-            'role_id' => [1,3],
+            'role_id' => [1, 3],
             'name' => '超级管理员',
             'mobile' => '15963611521',
             'password' => 'besthird',
@@ -68,6 +68,16 @@ class UserTest extends HttpTestCase
     {
         $res = $this->post('/user/status', [
             'id' => 1,
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
+
+    public function testUserlogin()
+    {
+        $res = $this->post('/user/login', [
+            'mobile' => '15904435047',
+            'password' => '123456',
         ]);
 
         $this->assertSame(0, $res['code']);
