@@ -29,6 +29,11 @@ class ErrorCode extends AbstractConstants
     const AUTH_INVALID = 501;
 
     /**
+     * @Message("重新登录")
+     */
+    const USRE__NOT_LOGIN_EXIST = 502;
+
+    /**
      * @Message("参数非法")
      */
     const PARAMS_INVALID = 1000;
@@ -77,11 +82,6 @@ class ErrorCode extends AbstractConstants
      * @Message("管理员账号冻结")
      */
     const USRE_NOT_FROZEN_EXIST = 1206;
-
-    /**
-     * @Message("重新登录")
-     */
-    const USRE__NOT_LOGIN_EXIST = 1207;
 
     /**
      * @Message("路由不存在")
