@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Hyperf.
+ * This file is part of Besthird.
  *
- * @link     https://www.hyperf.io
- * @document https://doc.hyperf.io
- * @contact  group@hyperf.io
+ * @document https://besthird.github.io/rbac-doc/
  * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
  */
 
@@ -24,6 +22,16 @@ class ErrorCode extends AbstractConstants
      * @Message("Server Error！")
      */
     const SERVER_ERROR = 500;
+
+    /**
+     * @Message("权限非法")
+     */
+    const AUTH_INVALID = 501;
+
+    /**
+     * @Message("重新登录")
+     */
+    const USRE__NOT_LOGIN_EXIST = 502;
 
     /**
      * @Message("参数非法")
@@ -74,11 +82,6 @@ class ErrorCode extends AbstractConstants
      * @Message("管理员账号冻结")
      */
     const USRE_NOT_FROZEN_EXIST = 1206;
-
-    /**
-     * @Message("重新登录")
-     */
-    const USRE__NOT_LOGIN_EXIST = 1207;
 
     /**
      * @Message("路由不存在")

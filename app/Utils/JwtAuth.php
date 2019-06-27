@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Hyperf.
+ * This file is part of Besthird.
  *
- * @link     https://www.hyperf.io
- * @document https://doc.hyperf.io
- * @contact  group@hyperf.io
+ * @document https://besthird.github.io/rbac-doc/
  * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
  */
 
@@ -75,7 +73,7 @@ class JwtAuth
         [$base64header, $base64payload, $sign] = $tokens;
 
         //获取jwt算法
-        $base64decodeheader = json_decode(self::base64UrlDecode($base64header), JSON_OBJECT_AS_ARRAY);
+        $base64decodeheader = json_decode(self::base64UrlDecode($base64header), true);
         if (empty($base64decodeheader['alg'])) {
             return false;
         }
@@ -85,7 +83,7 @@ class JwtAuth
             return false;
         }
 
-        $payload = json_decode(self::base64UrlDecode($base64payload), JSON_OBJECT_AS_ARRAY);
+        $payload = json_decode(self::base64UrlDecode($base64payload), true);
 
         //签发时间大于当前服务器时间验证失败
         if (isset($payload['iat']) && $payload['iat'] > time()) {

@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Hyperf.
+ * This file is part of Besthird.
  *
- * @link     https://www.hyperf.io
- * @document https://doc.hyperf.io
- * @contact  group@hyperf.io
+ * @document https://besthird.github.io/rbac-doc/
  * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
  */
 
@@ -52,6 +50,11 @@ class User extends Model
     protected $casts = ['id' => 'integer', 'status' => 'integer'];
 
     public function role()
+    {
+        return $this->hasOne(Role::class, 'user_id', 'id')->orderBy('id');
+    }
+
+    public function roles()
     {
         return $this->hasMany(Role::class, 'user_id', 'id');
     }

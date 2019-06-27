@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Hyperf.
+ * This file is part of Besthird.
  *
- * @link     https://www.hyperf.io
- * @document https://doc.hyperf.io
- * @contact  group@hyperf.io
+ * @document https://besthird.github.io/rbac-doc/
  * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
  */
 
@@ -14,6 +12,7 @@ return [
     'http' => [
         \App\Middleware\CorsMiddleware::class,
         \App\Middleware\DebugMiddleware::class,
+        \App\Middleware\JwtMiddleware::class,
     ],
     'sdk' => [
         \App\Middleware\DebugMiddleware::class,
