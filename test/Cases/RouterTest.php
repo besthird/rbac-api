@@ -29,7 +29,7 @@ class RouterTest extends HttpTestCase
 
     public function testRouterSave()
     {
-        $res = $this->post('/router/save', [
+        $res = $this->json('/router/save', [
             'id' => 1,
             'project_id' => 1,
             'group_id' => 1,

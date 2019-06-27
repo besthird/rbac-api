@@ -70,4 +70,14 @@ class UserTest extends HttpTestCase
 
         $this->assertSame(0, $res['code']);
     }
+
+    public function testUserlogin()
+    {
+        $res = $this->post('/user/login', [
+            'mobile' => '15904435047',
+            'password' => '123456',
+        ]);
+
+        $this->assertSame(0, $res['code']);
+    }
 }
