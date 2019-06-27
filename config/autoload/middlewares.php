@@ -12,6 +12,7 @@ return [
     'http' => [
         \App\Middleware\CorsMiddleware::class,
         \App\Middleware\DebugMiddleware::class,
+        \App\Middleware\JwtMiddleware::class,
     ],
     'sdk' => [
         \App\Middleware\DebugMiddleware::class,

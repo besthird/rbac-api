@@ -51,6 +51,11 @@ class User extends Model
 
     public function role()
     {
+        return $this->hasOne(Role::class, 'user_id', 'id')->orderBy('id');
+    }
+
+    public function roles()
+    {
         return $this->hasMany(Role::class, 'user_id', 'id');
     }
 }

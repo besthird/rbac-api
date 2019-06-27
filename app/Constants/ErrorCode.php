@@ -24,6 +24,11 @@ class ErrorCode extends AbstractConstants
     const SERVER_ERROR = 500;
 
     /**
+     * @Message("权限非法")
+     */
+    const AUTH_INVALID = 501;
+
+    /**
      * @Message("参数非法")
      */
     const PARAMS_INVALID = 1000;

@@ -20,7 +20,7 @@ class UserDao extends Dao
     /**
      * @param $id
      * @param bool $throw
-     * @return
+     * @return User
      */
     public function first($id, $throw = true)
     {
