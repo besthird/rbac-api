@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 /**
- * This file is part of Hyperf.
+ * This file is part of Besthird.
  *
- * @link     https://www.hyperf.io
- * @document https://doc.hyperf.io
- * @contact  group@hyperf.io
+ * @document https://besthird.github.io/rbac-doc/
  * @license  https://github.com/hyperf-cloud/hyperf/blob/master/LICENSE
  */
 
@@ -32,8 +30,9 @@ abstract class HttpTestCase extends TestCase
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $this->client = make(Testing\Client::class);
-        // $this->client = make(Testing\HttpClient::class, ['baseUri' => 'http://127.0.0.1:9501']);
+        $this->client = make(Testing\Client::class, [
+            'server' => 'sdk',
+        ]);
     }
 
     public function __call($name, $arguments)
