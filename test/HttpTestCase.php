@@ -27,12 +27,16 @@ abstract class HttpTestCase extends TestCase
      */
     protected $client;
 
+    /**
+     * @var HttpClient
+     */
+    protected $httpClient;
+
     public function __construct($name = null, array $data = [], $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
-        $this->client = make(Testing\Client::class, [
-            'server' => 'sdk',
-        ]);
+        $this->client = make(Testing\Client::class, ['server' => 'sdk']);
+        $this->httpClient = make(Testing\Client::class);
     }
 
     public function __call($name, $arguments)

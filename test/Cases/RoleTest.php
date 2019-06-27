@@ -50,7 +50,7 @@ class RoleTest extends HttpTestCase
     public function testRoleInfo()
     {
         $res = $this->get('/role/info', [
-            'id' => 2,
+            'id' => 1,
         ]);
 
         $this->assertSame(0, $res['code']);
@@ -58,9 +58,8 @@ class RoleTest extends HttpTestCase
 
     public function testRoleStatus()
     {
-        $res = $this->post('/role/status', [
-            'id' => 2,
-        ]);
+        $this->post('/role/status', ['id' => 1]);
+        $res = $this->post('/role/status', ['id' => 1]);
 
         $this->assertSame(0, $res['code']);
     }

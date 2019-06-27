@@ -37,6 +37,36 @@ class AuthService
         return $this->routers($userId);
     }
 
+    /**
+     * @param int|string $userId
+     * @param int|string $projectId
+     * @param stirng $method
+     * @param string $route
+     * @return bool
+     */
+    public function check($userId, $projectId, $method, $route): bool
+    {
+        $user = di()->get(UserDao::class)->first($userId);
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        $routers = $this->getRouters($userId);
+        if ($routes = $routers[$projectId][$method]) {
+            foreach ($routes as $item) {
+                if ($route == $item) {
+                    return true;
+                }
+                $preg = "/^{$item}$/";
+                if (preg_match($preg, $route)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     private function routers($userId)
     {
         $user = di()->get(UserDao::class)->first($userId);

@@ -30,6 +30,13 @@ class UserTest extends HttpTestCase
         ]);
 
         $this->assertSame(0, $res['code']);
+
+        $res = $this->httpClient->post('/user/login', [
+            'mobile' => '15963611521',
+            'password' => 'besthird',
+        ]);
+
+        $this->assertSame(0, $res['code']);
     }
 
     public function testUserIndex()
@@ -64,19 +71,8 @@ class UserTest extends HttpTestCase
 
     public function testUserStatus()
     {
-        $res = $this->post('/user/status', [
-            'id' => 1,
-        ]);
-
-        $this->assertSame(0, $res['code']);
-    }
-
-    public function testUserlogin()
-    {
-        $res = $this->post('/user/login', [
-            'mobile' => '15904435047',
-            'password' => '123456',
-        ]);
+        $this->post('/user/status', ['id' => 1]);
+        $res = $this->post('/user/status', ['id' => 1]);
 
         $this->assertSame(0, $res['code']);
     }

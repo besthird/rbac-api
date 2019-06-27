@@ -11,15 +11,15 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property $id
- * @property $project_id
- * @property $group_id
- * @property $type
- * @property $name
- * @property $route
- * @property $method
- * @property $created_at
- * @property $updated_at
+ * @property int $id
+ * @property int $project_id
+ * @property int $group_id
+ * @property int $type
+ * @property string $name
+ * @property string $route
+ * @property string $method
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Router extends Model
 {
@@ -53,7 +53,7 @@ class Router extends Model
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'project_id' => 'integer', 'group_id' => 'integer', 'type' => 'integer'];
+    protected $casts = ['id' => 'integer', 'project_id' => 'integer', 'group_id' => 'integer', 'type' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 
     public function project()
     {

@@ -11,13 +11,13 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property $id
- * @property $name
- * @property $mobile
- * @property $password
- * @property $status
- * @property $created_at
- * @property $updated_at
+ * @property int $id
+ * @property string $name
+ * @property string $mobile
+ * @property string $password
+ * @property int $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class User extends Model
 {
@@ -47,7 +47,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'status' => 'integer'];
+    protected $casts = ['id' => 'integer', 'status' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 
     public function role()
     {
@@ -64,11 +64,9 @@ class User extends Model
         if ($this->id === 1) {
             return true;
         }
-
         if ($this->role && $this->role->id === 1) {
             return true;
         }
-
         return false;
     }
 }

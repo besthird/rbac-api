@@ -11,12 +11,12 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property $id
- * @property $name
- * @property $comment
- * @property $status
- * @property $created_at
- * @property $updated_at
+ * @property int $id
+ * @property string $name
+ * @property string $comment
+ * @property int $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Role extends Model
 {
@@ -46,7 +46,7 @@ class Role extends Model
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'status' => 'integer'];
+    protected $casts = ['id' => 'integer', 'status' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 
     public function router()
     {

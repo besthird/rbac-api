@@ -10,8 +10,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Constants\ErrorCode;
+use App\Exception\BusinessException;
 use App\Service\AuthService;
 use Hyperf\Di\Annotation\Inject;
+use think\Validate;
 
 class AuthController extends Controller
 {
@@ -40,5 +43,21 @@ class AuthController extends Controller
      */
     public function check()
     {
+        $input = $this->request->all();
+
+        $validator = Validate::make([
+            'user_id' => 'require',
+            'project_id' => 'require',
+            'method' => 'require',
+            'route' => 'require',
+        ]);
+
+        if (! $validator->check($input)) {
+            throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
+        }
+
+        $bool = $this->auth->check($input['user_id'], $input['project_id'], $input['method'], $input['route']);
+
+        return $this->response->success($bool);
     }
 }

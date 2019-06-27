@@ -11,11 +11,11 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property $id
- * @property $project_id
- * @property $name
- * @property $created_at
- * @property $updated_at
+ * @property int $id
+ * @property int $project_id
+ * @property string $name
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Group extends Model
 {
@@ -45,7 +45,7 @@ class Group extends Model
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'project_id' => 'integer'];
+    protected $casts = ['id' => 'integer', 'project_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 
     public function project()
     {

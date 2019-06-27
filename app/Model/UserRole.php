@@ -11,11 +11,11 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property $id
- * @property $user_id
- * @property $role_id
- * @property $created_at
- * @property $updated_at
+ * @property int $id
+ * @property int $user_id
+ * @property int $role_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class UserRole extends Model
 {
@@ -45,5 +45,5 @@ class UserRole extends Model
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'role_id' => 'integer'];
+    protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'role_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 }
