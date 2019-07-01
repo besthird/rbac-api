@@ -5,9 +5,9 @@
 # https://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: coding.ecs.lmx0536.cn (MySQL 5.5.56-MariaDB)
+# Host: test01.besthird.org (MySQL 5.7.26)
 # Database: rbac
-# Generation Time: 2019-06-26 04:56:13 +0000
+# Generation Time: 2019-07-01 07:17:56 +0000
 # ************************************************************
 
 
@@ -163,6 +163,7 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `key` varchar(32) NOT NULL DEFAULT '' COMMENT '唯一键',
   `name` varchar(64) NOT NULL DEFAULT '' COMMENT '登录名',
   `mobile` varchar(16) NOT NULL DEFAULT '' COMMENT '手机号',
   `password` varchar(64) NOT NULL DEFAULT '' COMMENT '密码',
@@ -170,15 +171,16 @@ CREATE TABLE `user` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQUE_NAME` (`name`)
+  UNIQUE KEY `UNIQUE_NAME` (`name`),
+  UNIQUE KEY `UNIQUE_KEY` (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
-INSERT INTO `user` (`id`, `name`, `mobile`, `password`, `status`, `created_at`, `updated_at`)
+INSERT INTO `user` (`id`, `key`, `name`, `mobile`, `password`, `status`, `created_at`, `updated_at`)
 VALUES
-	(1,'超级管理员','15963611521','$2y$12$lOrGXRD05tbWRUvK7JIfw.wuKGe0yV28pdOe/TzZszxaNgyus6jT2',0,'2019-06-21 00:00:00','2019-06-26 04:56:02');
+	(1,'admin','超级管理员','15963611521','$2y$12$lOrGXRD05tbWRUvK7JIfw.wuKGe0yV28pdOe/TzZszxaNgyus6jT2',0,'2019-06-21 00:00:00','2019-06-26 04:56:02');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

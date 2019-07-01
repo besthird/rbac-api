@@ -89,7 +89,6 @@ class UserController extends Controller
         $validator = Validate::make([
             'id' => 'require|integer|>=:0',
             'name' => 'require',
-            // TODO: 用户角色应该是个列表，这里是多对多的关系
             'role_id' => 'require|>=:0',
             'mobile' => 'require|mobile',
             'status' => 'require',

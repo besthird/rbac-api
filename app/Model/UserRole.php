@@ -11,11 +11,11 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property int $id
- * @property int $user_id
- * @property int $role_id
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property $id
+ * @property $user_id
+ * @property $role_id
+ * @property $created_at
+ * @property $updated_at
  */
 class UserRole extends Model
 {

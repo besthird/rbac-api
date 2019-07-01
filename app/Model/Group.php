@@ -11,11 +11,11 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property int $id
- * @property int $project_id
- * @property string $name
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property $id
+ * @property $project_id
+ * @property $name
+ * @property $created_at
+ * @property $updated_at
  */
 class Group extends Model
 {
