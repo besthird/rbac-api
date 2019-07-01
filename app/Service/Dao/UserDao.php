@@ -32,6 +32,20 @@ class UserDao extends Dao
     }
 
     /**
+     * @param $key
+     * @param bool $throw
+     * @return User
+     */
+    public function firstByKey($key, $throw = true)
+    {
+        $model = User::query()->where('key', $key)->first();
+        if ($throw && empty($model)) {
+            throw new BusinessException(ErrorCode::USRE_NOT_EXIST);
+        }
+        return $model;
+    }
+
+    /**
      * @param $mobile
      * @return null|\Hyperf\Database\Model\Builder|\Hyperf\Database\Model\Model|object
      */
@@ -77,15 +91,18 @@ class UserDao extends Dao
 
     /**
      * @param $input
-     * @param int $id
+     * @param int|string $id
      * @return object
      */
     public function save($input, $id = 0): object
     {
-        $model = new User();
-
-        if ($id > 0) {
+        if ($id === null) {
+            $model = $this->firstByKey($input['key']);
+        } elseif ($id > 0) {
             $model = $this->first($id);
+        } else {
+            $model = new User();
+            $model->key = $input['key'];
         }
 
         if (! empty($input['name'])) {

@@ -11,12 +11,12 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property $id
- * @property $key
- * @property $name
- * @property $comment
- * @property $created_at
- * @property $updated_at
+ * @property int $id
+ * @property string $key
+ * @property string $name
+ * @property string $comment
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class Project extends Model
 {

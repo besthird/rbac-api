@@ -87,7 +87,8 @@ class UserController extends Controller
         $input = $this->request->all();
 
         $validator = Validate::make([
-            'id' => 'require|integer|>=:0',
+            'id' => 'integer|>=:0',
+            'key' => 'require',
             'name' => 'require',
             'role_id' => 'require|>=:0',
             'mobile' => 'require|mobile',
@@ -98,7 +99,7 @@ class UserController extends Controller
             throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
         }
 
-        $user = $this->dao->save($input, $input['id']);
+        $user = $this->dao->save($input, $input['id'] ?? null);
         $roleIds = $input['role_id'];
         $rels = $this->userRole->all($user->id);
 

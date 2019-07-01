@@ -11,11 +11,11 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property $id
- * @property $role_id
- * @property $router_id
- * @property $created_at
- * @property $updated_at
+ * @property int $id
+ * @property int $role_id
+ * @property int $router_id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class RoleRouter extends Model
 {

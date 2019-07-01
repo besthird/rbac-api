@@ -11,13 +11,14 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property $id
- * @property $name
- * @property $mobile
- * @property $password
- * @property $status
- * @property $created_at
- * @property $updated_at
+ * @property int $id
+ * @property string $key
+ * @property string $name
+ * @property string $mobile
+ * @property string $password
+ * @property int $status
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  */
 class User extends Model
 {
@@ -40,7 +41,7 @@ class User extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'name', 'mobile', 'password', 'status', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'key', 'name', 'mobile', 'password', 'status', 'created_at', 'updated_at'];
 
     /**
      * The attributes that should be cast to native types.
