@@ -46,7 +46,11 @@ class AuthService
      */
     public function check($userId, $projectId, $method, $route): bool
     {
-        $user = di()->get(UserDao::class)->first($userId);
+        $user = di()->get(UserDao::class)->first($userId, false);
+        if (empty($user)) {
+            $user = di()->get(UserDao::class)->firstByKey($userId);
+        }
+
         if ($user->isAdmin()) {
             return true;
         }

@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * This file is part of Besthird.
  *
@@ -31,7 +32,7 @@ return [
             'port' => 9502,
             'sock_type' => SWOOLE_SOCK_TCP,
             'callbacks' => [
-                SwooleEvent::ON_REQUEST => [Hyperf\HttpServer\Server::class, 'onRequest'],
+                SwooleEvent::ON_REQUEST => [App\Kernel\Http\InnerServer::class, 'onRequest'],
             ],
         ],
     ],
