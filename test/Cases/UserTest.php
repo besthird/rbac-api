@@ -24,6 +24,7 @@ class UserTest extends HttpTestCase
             'id' => 1,
             'role_id' => [1, 3],
             'name' => '超级管理员',
+            'key' => 'admin',
             'mobile' => '15963611521',
             'password' => 'besthird',
             'status' => 1,

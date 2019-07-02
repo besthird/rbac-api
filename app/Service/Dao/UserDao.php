@@ -82,7 +82,7 @@ class UserDao extends Dao
         if (isset($input['mobile']) && ! empty($input['mobile'])) {
             $query->where('mobile', $input['mobile']);
         }
-        if (isset($input['status']) ) {
+        if (isset($input['status'])) {
             $query->where('status', $input['status']);
         }
 
