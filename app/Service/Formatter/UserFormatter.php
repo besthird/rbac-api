@@ -20,6 +20,7 @@ class UserFormatter extends Formatter
             'id' => $model->id,
             'name' => $model->name,
             'mobile' => $model->mobile,
+            'key' => $model->key,
             'password' => '',
             'status' => $model->status,
             'created_at' => (string) $model->created_at,
