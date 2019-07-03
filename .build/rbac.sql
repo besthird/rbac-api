@@ -180,7 +180,7 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`id`, `key`, `name`, `mobile`, `password`, `status`, `created_at`, `updated_at`)
 VALUES
-	(1,'admin','超级管理员','15963611521','$2y$12$lOrGXRD05tbWRUvK7JIfw.wuKGe0yV28pdOe/TzZszxaNgyus6jT2',0,'2019-06-21 00:00:00','2019-06-26 04:56:02');
+	(1,'admin','超级管理员','15963611521','$2y$12$lOrGXRD05tbWRUvK7JIfw.wuKGe0yV28pdOe/TzZszxaNgyus6jT2',1,'2019-06-21 00:00:00','2019-06-26 04:56:02');
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
