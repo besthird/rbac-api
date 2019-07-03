@@ -117,6 +117,9 @@ class UserDao extends Dao
         if (! empty($input['mobile'])) {
             $model->mobile = $input['mobile'];
         }
+        if (! empty($input['key'])) {
+            $model->key = $input['key'];
+        }
         if (! empty($input['password'])) {
             $cost = 12;
             $option = ['cost' => $cost];
