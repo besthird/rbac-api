@@ -30,9 +30,10 @@ class AuthController extends Controller
     public function routers()
     {
         $userId = $this->request->input('user_id', 0);
+
         $result = [];
         if ($userId > 0) {
-            $result = $this->auth->getRouters($userId);
+            $result = $this->auth->resetRouters($userId);
         }
 
         return $this->response->success($result);
@@ -51,6 +52,7 @@ class AuthController extends Controller
             'method' => 'require',
             'route' => 'require',
         ]);
+
 
         if (! $validator->check($input)) {
             throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());

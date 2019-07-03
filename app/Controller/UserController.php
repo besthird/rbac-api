@@ -102,7 +102,7 @@ class UserController extends Controller
         $user = $this->dao->save($input, $input['id'] ?? null);
         $roleIds = $input['role_id'];
         $rels = $this->userRole->all($user->id);
-
+        
         foreach ($roleIds as $roleId) {
             $rel = $rels->shift();
             if (empty($rel)) {

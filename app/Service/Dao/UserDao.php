@@ -28,6 +28,7 @@ class UserDao extends Dao
         if ($throw && empty($model)) {
             throw new BusinessException(ErrorCode::USRE_NOT_EXIST);
         }
+
         return $model;
     }
 
