@@ -44,7 +44,7 @@ class UserController extends Controller
         $limit = $this->request->input('limit', 10);
 
         $validator = Validate::make([
-            'id' => 'integer>=:0',
+            'id' => 'integer|>=:0',
         ]);
 
         if (! $validator->check($input)) {
@@ -129,7 +129,11 @@ class UserController extends Controller
         if (empty($id)) {
             throw new BusinessException(ErrorCode::USRE_NOT_EXIST);
         }
-        $result = $this->dao->status($id);
+
+        $result = false;
+        if ($id != 1) {
+            $result = $this->dao->status($id);
+        }
 
         return $this->response->success($result);
     }
