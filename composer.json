@@ -46,7 +46,8 @@
         "hyperf/process": "1.0.*",
         "hyperf/redis": "1.0.*",
         "hyperf/utils": "1.0.*",
-        "topthink/think-validate": "^1.0"
+        "topthink/think-validate": "^1.0",
+        "firebase/php-jwt": "^5.0"
     },
     "require-dev": {
         "swoft/swoole-ide-helper": "^4.2",

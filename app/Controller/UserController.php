@@ -179,7 +179,7 @@ class UserController extends Controller
             throw new BusinessException(ErrorCode::USRE_NOT_FROZEN_EXIST);
         }
 
-        $token = JwtAuth::getToken(['userId' => $model->id]);
+        $token = JwtAuth::getToken($model->id);
 
         $result['token'] = $token;
 

@@ -50,7 +50,7 @@ class JwtMiddleware implements MiddlewareInterface
                 throw new BusinessException(ErrorCode::USRE__NOT_LOGIN_EXIST);
             }
 
-            $userId = $verify['userId'] ?? null;
+            $userId = $verify ?? null;
             UserInstance::instance()->init($userId);
         }
 
