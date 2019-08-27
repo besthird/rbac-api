@@ -53,7 +53,6 @@ class AuthController extends Controller
             'route' => 'require',
         ]);
 
-
         if (! $validator->check($input)) {
             throw new BusinessException(ErrorCode::PARAMS_INVALID, (string) $validator->getError());
         }

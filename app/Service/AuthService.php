@@ -36,7 +36,6 @@ class AuthService
     {
         return $this->routers($userId);
     }
-    
 
     /**
      * @param int|string $userId

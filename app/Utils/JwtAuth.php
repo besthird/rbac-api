@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace App\Utils;
 
 use Firebase\JWT\JWT;
-use Hyperf\Utils\Str;
 
 /**
  * Class JwtAuth.
